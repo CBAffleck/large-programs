@@ -75,6 +75,7 @@ public class MinesweeperBoard {
                 frame.setSize(400,400);
                 //frame.setBackground(Color.decode("#fff2d3"));
                 frame.setMinimumSize(frame.getSize());
+                frame.setMaximumSize(frame.getSize());
                 frame.setVisible(true);
             }
         };
