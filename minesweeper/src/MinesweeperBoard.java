@@ -18,14 +18,8 @@ public class MinesweeperBoard implements MouseListener {
     private JLabel message = new JLabel("The mines are planted!");
 
     public MinesweeperBoard() {
-//        addMouseListener(new MouseAdapter() {
-//            public void mousePressed(MouseEvent me) {
-//                System.out.println(me);
-//            }
-//        });
         startGui();
     }
-
 
     public void mouseEntered(MouseEvent e) {
         //throw new java.lang.UnsupportedOperationException("Not implemented");
@@ -43,9 +37,21 @@ public class MinesweeperBoard implements MouseListener {
     }
 
     public void mouseReleased(MouseEvent e) {
+        int x = ((JButton) e.getSource()).getX()/48;
+        int y = ((JButton) e.getSource()).getY()/42;
         if (e.getButton() == MouseEvent.BUTTON1) {
-            e.getSource();
-            System.out.println(""+((JButton) e.getSource()).getX()/48+","+((JButton) e.getSource()).getY()/42);
+            boardTiles[x][y].setEnabled(true);
+            boardTiles[x][y].setIcon(new ImageIcon(new ImageIcon("Resources/touched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "touched"));
+        } else if (e.getButton() == MouseEvent.BUTTON3) {
+            if (((ImageIcon) boardTiles[x][y].getIcon()).getDescription().equals("touched")) {
+                //do nothing
+            } else if (boardTiles[x][y].isEnabled()) {
+                boardTiles[x][y].setEnabled(false);
+                boardTiles[x][y].setDisabledIcon(new ImageIcon(new ImageIcon("Resources/flagged_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "flagged"));
+            } else {
+                boardTiles[x][y].setEnabled(true);
+                boardTiles[x][y].setIcon(new ImageIcon(new ImageIcon("Resources/untouched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "background"));
+            }
         }
     }
 
@@ -80,8 +86,8 @@ public class MinesweeperBoard implements MouseListener {
             for (int j = 0; j < boardTiles[i].length; j++) {
                 JButton tile = new JButton();
                 tile.setMargin(buttonMargin);
-                ImageIcon icon = new ImageIcon(new ImageIcon("Resources/untouched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH));
-                tile.setIcon(icon);
+                tile.setEnabled(true);
+                tile.setIcon(new ImageIcon(new ImageIcon("Resources/untouched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "background"));
                 tile.setBackground(Color.decode("#74d1fc"));
                 tile.addMouseListener(this);
                 boardTiles[j][i] = tile;
