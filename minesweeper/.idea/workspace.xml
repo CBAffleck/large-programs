@@ -24,13 +24,13 @@
       <file leaf-file-name="MinesweeperBoard.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MinesweeperBoard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="16" column="25" lean-forward="true" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+            <state relative-caret-position="795">
+              <caret line="67" column="31" lean-forward="false" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />
-                <element signature="e#614#615#0" expanded="true" />
-                <element signature="e#640#641#0" expanded="true" />
+                <element signature="e#547#548#0" expanded="true" />
+                <element signature="e#573#574#0" expanded="true" />
                 <element signature="method#mouseEntered#0;class#MinesweeperBoard#0" expanded="false" />
                 <element signature="method#mouseExited#0;class#MinesweeperBoard#0" expanded="false" />
                 <element signature="method#mouseClicked#0;class#MinesweeperBoard#0" expanded="false" />
@@ -543,12 +543,12 @@
       <updated>1495067502324</updated>
       <workItem from="1495067504516" duration="137000" />
       <workItem from="1495067708992" duration="11706000" />
-      <workItem from="1495257416477" duration="14316000" />
+      <workItem from="1495257416477" duration="17215000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26159000" />
+    <option name="totallyTimeSpent" value="29058000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="831" extended-state="6" />
@@ -609,8 +609,8 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />
-            <element signature="e#614#615#0" expanded="true" />
-            <element signature="e#640#641#0" expanded="true" />
+            <element signature="e#547#548#0" expanded="true" />
+            <element signature="e#573#574#0" expanded="true" />
             <element signature="method#mouseEntered#0;class#MinesweeperBoard#0" expanded="false" />
             <element signature="method#mouseExited#0;class#MinesweeperBoard#0" expanded="false" />
             <element signature="method#mouseClicked#0;class#MinesweeperBoard#0" expanded="false" />
@@ -640,13 +640,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MinesweeperBoard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="16" column="25" lean-forward="true" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+        <state relative-caret-position="795">
+          <caret line="67" column="31" lean-forward="false" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />
-            <element signature="e#614#615#0" expanded="true" />
-            <element signature="e#640#641#0" expanded="true" />
+            <element signature="e#547#548#0" expanded="true" />
+            <element signature="e#573#574#0" expanded="true" />
             <element signature="method#mouseEntered#0;class#MinesweeperBoard#0" expanded="false" />
             <element signature="method#mouseExited#0;class#MinesweeperBoard#0" expanded="false" />
             <element signature="method#mouseClicked#0;class#MinesweeperBoard#0" expanded="false" />
