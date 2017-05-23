@@ -24,13 +24,13 @@
       <file leaf-file-name="MinesweeperBoard.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MinesweeperBoard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="795">
-              <caret line="67" column="31" lean-forward="false" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
+            <state relative-caret-position="1260">
+              <caret line="98" column="26" lean-forward="true" selection-start-line="98" selection-start-column="26" selection-end-line="98" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />
-                <element signature="e#547#548#0" expanded="true" />
-                <element signature="e#573#574#0" expanded="true" />
+                <element signature="e#620#621#0" expanded="true" />
+                <element signature="e#646#647#0" expanded="true" />
                 <element signature="method#mouseEntered#0;class#MinesweeperBoard#0" expanded="false" />
                 <element signature="method#mouseExited#0;class#MinesweeperBoard#0" expanded="false" />
                 <element signature="method#mouseClicked#0;class#MinesweeperBoard#0" expanded="false" />
@@ -48,6 +48,11 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>counter</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -73,6 +78,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="65" />
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="831" />
@@ -543,15 +549,15 @@
       <updated>1495067502324</updated>
       <workItem from="1495067504516" duration="137000" />
       <workItem from="1495067708992" duration="11706000" />
-      <workItem from="1495257416477" duration="17215000" />
+      <workItem from="1495257416477" duration="22010000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29058000" />
+    <option name="totallyTimeSpent" value="33853000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="831" extended-state="6" />
+    <frame x="65" y="23" width="1440" height="831" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -609,8 +615,8 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />
-            <element signature="e#547#548#0" expanded="true" />
-            <element signature="e#573#574#0" expanded="true" />
+            <element signature="e#620#621#0" expanded="true" />
+            <element signature="e#646#647#0" expanded="true" />
             <element signature="method#mouseEntered#0;class#MinesweeperBoard#0" expanded="false" />
             <element signature="method#mouseExited#0;class#MinesweeperBoard#0" expanded="false" />
             <element signature="method#mouseClicked#0;class#MinesweeperBoard#0" expanded="false" />
@@ -640,13 +646,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MinesweeperBoard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="67" column="31" lean-forward="false" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
+        <state relative-caret-position="1260">
+          <caret line="98" column="26" lean-forward="true" selection-start-line="98" selection-start-column="26" selection-end-line="98" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />
-            <element signature="e#547#548#0" expanded="true" />
-            <element signature="e#573#574#0" expanded="true" />
+            <element signature="e#620#621#0" expanded="true" />
+            <element signature="e#646#647#0" expanded="true" />
             <element signature="method#mouseEntered#0;class#MinesweeperBoard#0" expanded="false" />
             <element signature="method#mouseExited#0;class#MinesweeperBoard#0" expanded="false" />
             <element signature="method#mouseClicked#0;class#MinesweeperBoard#0" expanded="false" />

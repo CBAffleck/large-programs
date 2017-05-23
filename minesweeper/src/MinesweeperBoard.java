@@ -1,9 +1,10 @@
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.Timer;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addMouseListener;
 
@@ -15,6 +16,8 @@ public class MinesweeperBoard implements MouseListener {
     private final JPanel gui = new JPanel(new BorderLayout(3, 3));
     private JButton[][] boardTiles = new JButton[8][8];
     private JPanel board;
+    private long start = 0;
+    private boolean isGameStarted = false;
 
     public MinesweeperBoard() {
         startGui();
@@ -39,6 +42,10 @@ public class MinesweeperBoard implements MouseListener {
         int x = ((JButton) e.getSource()).getX()/48; //Gets x index of tile
         int y = ((JButton) e.getSource()).getY()/42; //Gets y index of tile
         if (e.getButton() == MouseEvent.BUTTON1) { //Checks if user left-clicks
+            if (!isGameStarted) { //If the user clicks a tile, the timer begins
+                isGameStarted = true;
+                start = System.currentTimeMillis();
+            }
             boardTiles[x][y].setEnabled(true); //If it's a left click, the icon changes to the "touched" icon
             // TODO: allow icon to change to numbered icon based on number of surrounding bombs, or change to blank icon if no bombs around it
             boardTiles[x][y].setIcon(new ImageIcon(new ImageIcon("Resources/touched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "touched"));
@@ -60,6 +67,15 @@ public class MinesweeperBoard implements MouseListener {
         return;
     }
 
+    public long timePassed() { //Sets timePassed to 0 until the user begins the game
+        if (isGameStarted) {
+            long passed = (System.currentTimeMillis() - start) / 1000;
+            return passed;
+        } else {
+            return 0;
+        }
+    }
+
     public final void startGui() {
         // Sets up gui for the game.
         gui.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -71,9 +87,18 @@ public class MinesweeperBoard implements MouseListener {
         newGame.addMouseListener(this);
         tools.add(newGame);
         tools.addSeparator();
-        //TODO: Write code for counter to update as time passes
-        JLabel counter = new JLabel("Time: 00:00"); //Shows time passed in minutes and seconds
+        JLabel counter = new JLabel("Time Passed: " + timePassed() + " sec"); //Shows time passed in seconds
         tools.add(counter);
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (isGameStarted) {
+                    counter.setText("Time Passed: " + timePassed() + " sec");
+                }
+            }
+        }; //updates timer
+        Timer timer = new Timer(0, actionListener);
+        timer.start();
 
         board = new JPanel(new GridLayout(0, 8));
         board.setBackground(Color.decode("#fff2d3"));
