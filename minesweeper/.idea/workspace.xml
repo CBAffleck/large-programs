@@ -24,8 +24,8 @@
       <file leaf-file-name="MinesweeperBoard.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MinesweeperBoard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-94">
-              <caret line="20" column="114" lean-forward="false" selection-start-line="20" selection-start-column="114" selection-end-line="20" selection-end-column="114" />
+            <state relative-caret-position="780">
+              <caret line="65" column="122" lean-forward="false" selection-start-line="65" selection-start-column="122" selection-end-line="65" selection-end-column="122" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />
@@ -547,12 +547,12 @@
       <workItem from="1495067504516" duration="137000" />
       <workItem from="1495067708992" duration="11706000" />
       <workItem from="1495257416477" duration="22529000" />
-      <workItem from="1495507519217" duration="2758000" />
+      <workItem from="1495507519217" duration="3252000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37130000" />
+    <option name="totallyTimeSpent" value="37624000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1440" height="830" extended-state="0" />
@@ -635,8 +635,8 @@
     <entry file="file://$PROJECT_DIR$/src/Gameplay.java" />
     <entry file="file://$PROJECT_DIR$/src/MinesweeperBoard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-94">
-          <caret line="20" column="114" lean-forward="false" selection-start-line="20" selection-start-column="114" selection-end-line="20" selection-end-column="114" />
+        <state relative-caret-position="780">
+          <caret line="65" column="122" lean-forward="false" selection-start-line="65" selection-start-column="122" selection-end-line="65" selection-end-column="122" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />

@@ -58,11 +58,13 @@ public class MinesweeperBoard implements MouseListener {
         } else if (e.getButton() == MouseEvent.BUTTON3) { //If it's a right click, do code for flagging and unflagging tile.
             if (((ImageIcon) boardTiles[x][y].getIcon()).getDescription().equals("touched")) { //Checks if the tile is already touched, so it can't be flagged anymore
                 //do nothing
-            } else if (boardTiles[x][y].isEnabled()) { //If untouched, change icon to flag, letting the user remember the mine location
+            } else if (boardTiles[x][y].isEnabled() && flagCount != 0) { //If untouched, change icon to flag, letting the user remember the mine location
                 boardTiles[x][y].setEnabled(false); //Disabled icon is the flag
                 boardTiles[x][y].setDisabledIcon(new ImageIcon(new ImageIcon("Resources/flagged_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "flagged"));
                 flagCount -= 1;
                 numFlags.setText("Flags left: " + flagCount);
+            } else if (boardTiles[x][y].isEnabled()) { //If untouched, and no flags remain, do nothing when right-clicked.
+                //do nothing
             } else {
                 boardTiles[x][y].setEnabled(true); //If the icon is a flag, this unflags the icon.
                 boardTiles[x][y].setIcon(new ImageIcon(new ImageIcon("Resources/untouched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "background"));
