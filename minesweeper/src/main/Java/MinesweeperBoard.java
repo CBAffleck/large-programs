@@ -23,17 +23,14 @@ public class MinesweeperBoard implements MouseListener {
 
     public void mouseEntered(MouseEvent e) {
         //throw new java.lang.UnsupportedOperationException("Not implemented");
-        return;
     }
 
     public void mouseExited(MouseEvent e) {
         //throw new java.lang.UnsupportedOperationException("Not implemented");
-        return;
     }
 
     public void mouseClicked(MouseEvent e) {
         //throw new java.lang.UnsupportedOperationException("Not implemented");
-        return;
     }
 
     public void mouseReleased(MouseEvent e) {
@@ -72,7 +69,6 @@ public class MinesweeperBoard implements MouseListener {
 
     public void mousePressed(MouseEvent e) {
         //throw new java.lang.UnsupportedOperationException("Not implemented");
-        return;
     }
 
     private long timePassed() { //Sets timePassed to 0 until the user begins the game
@@ -137,11 +133,7 @@ public class MinesweeperBoard implements MouseListener {
         }
     }
 
-    public final JComponent getBoard() {
-        return board;
-    }
-
-    public final JComponent getGui() {
+    private JComponent getGui() {
         return gui;
     }
 
