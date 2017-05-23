@@ -18,7 +18,8 @@ public class MinesweeperBoard implements MouseListener {
     private JPanel board;
     private long start = 0;
     private boolean isGameStarted = false;
-    private int numFlags = 5; //TODO: This will be set to zero, and will then be set to whatever the randomized # of bombs is.
+    private int flagCount = 10;  //TODO: This is set at 10 for testing, but later will be set to whatever the randomized # of mines is.
+    private JLabel numFlags = new JLabel("Flags left: " + flagCount);
 
     private MinesweeperBoard() {
         startGui();
@@ -47,20 +48,26 @@ public class MinesweeperBoard implements MouseListener {
                 isGameStarted = true;
                 start = System.currentTimeMillis();
             }
+            if (!boardTiles[x][y].isEnabled()) { //If a flag is left-clicked, and the tile becomes "touched", the the flag count increases by one.
+                flagCount += 1;
+                numFlags.setText("Flags left: " + flagCount);
+            }
             boardTiles[x][y].setEnabled(true); //If it's a left click, the icon changes to the "touched" icon
             // TODO: allow icon to change to numbered icon based on number of surrounding bombs, or change to blank icon if no bombs around it
             boardTiles[x][y].setIcon(new ImageIcon(new ImageIcon("Resources/touched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "touched"));
         } else if (e.getButton() == MouseEvent.BUTTON3) { //If it's a right click, do code for flagging and unflagging tile.
             if (((ImageIcon) boardTiles[x][y].getIcon()).getDescription().equals("touched")) { //Checks if the tile is already touched, so it can't be flagged anymore
                 //do nothing
-            } else if (boardTiles[x][y].isEnabled() && numFlags != 0) { //If untouched, change icon to flag, letting the user remember mine location
+            } else if (boardTiles[x][y].isEnabled()) { //If untouched, change icon to flag, letting the user remember the mine location
                 boardTiles[x][y].setEnabled(false); //Disabled icon is the flag
                 boardTiles[x][y].setDisabledIcon(new ImageIcon(new ImageIcon("Resources/flagged_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "flagged"));
-                numFlags -= 1;
+                flagCount -= 1;
+                numFlags.setText("Flags left: " + flagCount);
             } else {
                 boardTiles[x][y].setEnabled(true); //If the icon is a flag, this unflags the icon.
                 boardTiles[x][y].setIcon(new ImageIcon(new ImageIcon("Resources/untouched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "background"));
-                numFlags += 1;
+                flagCount += 1;
+                numFlags.setText("Flags left: " + flagCount);
             }
         }
     }
@@ -89,8 +96,8 @@ public class MinesweeperBoard implements MouseListener {
         newGame.addMouseListener(this);
         tools.add(newGame);
         tools.addSeparator();
-        JLabel flagCount = new JLabel("Flags left: " + numFlags); //TODO: Fix flag count not decreasing.
-        tools.add(flagCount);
+        //JLabel flagCount = new JLabel("Flags left: " + numFlags); //TODO: Fix flag count not decreasing.
+        tools.add(numFlags);
         tools.addSeparator();
         JLabel counter = new JLabel("Time Passed: " + timePassed() + " sec"); //Shows time passed in seconds
         tools.add(counter);
