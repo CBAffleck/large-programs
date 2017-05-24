@@ -6,8 +6,7 @@ import javax.swing.Timer;
 
 /**
  * Created by CampbellAffleck on 5/17/17.
- */
-/**
+
     Useful code for printing out numBoard:
         for (int i = 0; i < numBoard.length; i++) {
             for (int j = 0; j < numBoard[i].length; j++) {
@@ -30,7 +29,7 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
     private long start = 0;
     private boolean isGameStarted = false;
     private int numUnderTile;
-    private int flagCount = 10;  //TODO: This is set at 10 for testing, but later will be set to whatever the randomized # of mines is.
+    private int flagCount = 0;  //TODO: This is set at 10 for testing, but later will be set to whatever the randomized # of mines is.
     private JLabel numFlags = new JLabel("Flags left: " + flagCount);
 
     private MinesweeperBoard() {
@@ -54,10 +53,11 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
         int x = ((JButton) e.getSource()).getY()/42; //Gets y index of tile
         if (e.getButton() == MouseEvent.BUTTON1) { //Checks if user left-clicks
             //System.out.println("(" + x + ", " + y + ")"); //Print out coordinate of clicked tile
-            if (!isGameStarted) { //If the user clicks a tile, the timer begins
+            if (!isGameStarted) { //If the user clicks a tile, the game starts
                 isGameStarted = true;
-                start = System.currentTimeMillis();
-                mineGenerator(colSize,rowSize);
+                start = System.currentTimeMillis(); //Begins timer
+                flagCount = mineGenerator(colSize,rowSize); //Gets random number of mines and sets an equal number of flags
+                numFlags.setText("Flags left: " + flagCount);
                 numBoard = fillBoard(placeMines(colSize, rowSize, x, y));
                 for (int i = 0; i < numBoard.length; i++) {
                     for (int j = 0; j < numBoard[i].length; j++) {
@@ -98,10 +98,10 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
     }
 
     private void checkUnderTile(JButton[][] guiBoard, int[][] board, int x, int y) {
-        numUnderTile = numBoard[x][y];
+        numUnderTile = board[x][y];
         if (numUnderTile == 0 && visitedBoard[x][y] == 0) {
             visitedBoard[x][y] = 1;
-            revealAroundZero(guiBoard, numBoard, x, y);
+            revealAroundZero(guiBoard, board, x, y);
         }
         guiBoard[x][y].setIcon(new ImageIcon(new ImageIcon("Resources/" + numUnderTile + "_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "touched"));
     }
@@ -110,47 +110,56 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
         if (xPos == 0 && yPos == 0) {
             for (int xStart = xPos; xStart <= xPos + 1; xStart++) {
                 for (int yStart = yPos; yStart <= yPos + 1; yStart++) {
-                    checkUnderTile(guiBoard, numBoard, xStart, yStart);}
+                    checkUnderTile(guiBoard, numBoard, xStart, yStart);
+                }
             }
         } else if (xPos == 0 && yPos == 7) {
             for (int xStart = xPos; xStart <= xPos + 1; xStart++) {
                 for (int yStart = yPos - 1; yStart <= yPos; yStart++) {
-                    checkUnderTile(guiBoard, numBoard, xStart, yStart);}
+                    checkUnderTile(guiBoard, numBoard, xStart, yStart);
+                }
             }
         } else if (xPos == 7 && yPos == 0) {
             for (int xStart = xPos - 1; xStart <= xPos; xStart++) {
                 for (int yStart = yPos; yStart <= yPos + 1; yStart++) {
-                    checkUnderTile(guiBoard, numBoard, xStart, yStart);}
+                    checkUnderTile(guiBoard, numBoard, xStart, yStart);
+                }
             }
         } else if (xPos == 7 && yPos == 7) {
             for (int xStart = xPos - 1; xStart <= xPos; xStart++) {
                 for (int yStart = yPos - 1; yStart <= yPos; yStart++) {
-                    checkUnderTile(guiBoard, numBoard, xStart, yStart);}
+                    checkUnderTile(guiBoard, numBoard, xStart, yStart);
+                }
             }
         } else if (xPos == 0) {
             for (int xStart = xPos; xStart <= xPos + 1; xStart++) {
                 for (int yStart = yPos - 1; yStart <= yPos + 1; yStart++) {
-                    checkUnderTile(guiBoard, numBoard, xStart, yStart);}
+                    checkUnderTile(guiBoard, numBoard, xStart, yStart);
+                }
             }
         } else if (xPos == 7) {
             for (int xStart = xPos - 1; xStart <= xPos; xStart++) {
                 for (int yStart = yPos - 1; yStart <= yPos + 1; yStart++) {
-                    checkUnderTile(guiBoard, numBoard, xStart, yStart);}
+                    checkUnderTile(guiBoard, numBoard, xStart, yStart);
+                }
             }
         } else if (yPos == 0) {
             for (int xStart = xPos - 1; xStart <= xPos + 1; xStart++) {
                 for (int yStart = yPos; yStart <= yPos + 1; yStart++) {
-                    checkUnderTile(guiBoard, numBoard, xStart, yStart);}
+                    checkUnderTile(guiBoard, numBoard, xStart, yStart);
+                }
             }
         } else if (yPos == 7) {
             for (int xStart = xPos - 1; xStart <= xPos + 1; xStart++) {
                 for (int yStart = yPos - 1; yStart <= yPos; yStart++) {
-                    checkUnderTile(guiBoard, numBoard, xStart, yStart);}
+                    checkUnderTile(guiBoard, numBoard, xStart, yStart);
+                }
             }
         } else {
             for (int xStart = xPos - 1; xStart <= xPos + 1; xStart++) {
                 for (int yStart = yPos - 1; yStart <= yPos + 1; yStart++) {
-                    checkUnderTile(guiBoard, numBoard, xStart, yStart);}
+                    checkUnderTile(guiBoard, numBoard, xStart, yStart);
+                }
             }
         }
     }
