@@ -184,10 +184,6 @@ public class GameRules {
         return board;
     }
 
-    public static void revealNumbers(JButton[][] boardTiles, int XPos, int YPos) {
-
-    }
-
 }
 
 /*
@@ -195,6 +191,7 @@ public class GameRules {
     them on a 2D int array. This will be an int array representation of the jbutton board.
 
     Important code to be changed for each numbered tile:
+
     boardTiles[x][y].setIcon(new ImageIcon(new ImageIcon("Resources/touched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "touched"));
 
     fillBoard: After placeMines is called, fillBoard will step through the tiles in the grid and place a number icon at each tile corresponding

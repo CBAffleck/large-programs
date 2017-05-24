@@ -7,11 +7,25 @@ import javax.swing.Timer;
 /**
  * Created by CampbellAffleck on 5/17/17.
  */
-public class MinesweeperBoard implements MouseListener {
+/**
+    Useful code for printing out numBoard:
+        for (int i = 0; i < numBoard.length; i++) {
+            for (int j = 0; j < numBoard[i].length; j++) {
+                System.out.print(numBoard[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("\n");
+
+ */
+public class MinesweeperBoard extends GameRules implements MouseListener {
 
     private final JPanel gui = new JPanel(new BorderLayout(3, 3));
-    private JButton[][] boardTiles = new JButton[8][8];
+    private int colSize = 8;
+    private int rowSize = 8;
+    private JButton[][] boardTiles = new JButton[colSize][rowSize];
     private JPanel board;
+    private int[][] numBoard;
     private long start = 0;
     private boolean isGameStarted = false;
     private int flagCount = 10;  //TODO: This is set at 10 for testing, but later will be set to whatever the randomized # of mines is.
@@ -41,6 +55,15 @@ public class MinesweeperBoard implements MouseListener {
             if (!isGameStarted) { //If the user clicks a tile, the timer begins
                 isGameStarted = true;
                 start = System.currentTimeMillis();
+                mineGenerator(colSize,rowSize);
+                numBoard = fillBoard(placeMines(colSize, rowSize, x, y));
+                for (int i = 0; i < numBoard.length; i++) {
+                    for (int j = 0; j < numBoard[i].length; j++) {
+                        System.out.print(numBoard[i][j] + " ");
+                    }
+                    System.out.println();
+                }
+                System.out.println("\n");
             }
             if (!boardTiles[x][y].isEnabled()) { //If a flag is left-clicked, and the tile becomes "touched", the the flag count increases by one.
                 flagCount += 1;
@@ -48,7 +71,7 @@ public class MinesweeperBoard implements MouseListener {
             }
             boardTiles[x][y].setEnabled(true); //If it's a left click, the icon changes to the "touched" icon
             // TODO: allow icon to change to numbered icon based on number of surrounding bombs, or change to blank icon if no bombs around it
-            boardTiles[x][y].setIcon(new ImageIcon(new ImageIcon("Resources/touched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "touched"));
+            revealNumber(boardTiles, numBoard, y, x);
         } else if (e.getButton() == MouseEvent.BUTTON3) { //If it's a right click, do code for flagging and unflagging tile.
             if (((ImageIcon) boardTiles[x][y].getIcon()).getDescription().equals("touched")) { //Checks if the tile is already touched, so it can't be flagged anymore
                 //do nothing
@@ -70,6 +93,17 @@ public class MinesweeperBoard implements MouseListener {
 
     public void mousePressed(MouseEvent e) {
         //throw new java.lang.UnsupportedOperationException("Not implemented");
+    }
+
+    public void revealNumber(JButton[][] guiBoard, int[][] numBoard, int xPosUserClick, int yPosUserClick) {
+        int numUnderTile = numBoard[xPosUserClick][yPosUserClick];
+        if (numBoard[xPosUserClick][yPosUserClick] == 0) {
+            guiBoard[xPosUserClick][yPosUserClick].setIcon(new ImageIcon(new ImageIcon("Resources/" + numUnderTile + "_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "touched"));
+        } else if (numBoard[xPosUserClick][yPosUserClick] == 9) {
+            guiBoard[xPosUserClick][yPosUserClick].setIcon(new ImageIcon(new ImageIcon("Resources/" + numUnderTile + "_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "touched"));
+        } else {
+            guiBoard[xPosUserClick][yPosUserClick].setIcon(new ImageIcon(new ImageIcon("Resources/" + numUnderTile + "_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "touched"));
+        }
     }
 
     private long timePassed() { //Sets timePassed to 0 until the user begins the game
@@ -127,9 +161,9 @@ public class MinesweeperBoard implements MouseListener {
         }
 
         //Adds all of the tiles to the board
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                board.add(boardTiles[j][i]);
+        for (int i = 0; i < colSize; i++) {
+            for (int j = 0; j < rowSize; j++) {
+                board.add(boardTiles[i][j]);
             }
         }
     }
