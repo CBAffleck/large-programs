@@ -32,8 +32,149 @@ public class GameRules {
         return board;
     }
 
-    public static void fillBoard() {
-
+    public static int[][] fillBoard(int[][] board) {
+        int rowNum, colNum;
+        for (colNum = 0; colNum < board.length; colNum++) {
+            for (rowNum = 0; rowNum < board[colNum].length; rowNum++) {
+                int mineCount = 0;
+                if (board[colNum][rowNum] == 9) {
+                    //do nothing, go to next rowNum
+                } else {
+                    if (colNum == 0 && rowNum == 0) {
+                        if (board[colNum][rowNum + 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum + 1][rowNum] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum + 1][rowNum + 1] == 9) {
+                            mineCount += 1;
+                        }
+                    } else if (colNum == 0 && rowNum == 7) {
+                        if (board[colNum][rowNum - 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum + 1][rowNum] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum + 1][rowNum - 1] == 9) {
+                            mineCount += 1;
+                        }
+                    } else if (colNum == 7 && rowNum == 0) {
+                        if (board[colNum - 1][rowNum] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum - 1][rowNum + 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum][rowNum + 1] == 9) {
+                            mineCount += 1;
+                        }
+                    } else if (colNum == 7 && rowNum == 7) {
+                        if (board[colNum - 1][rowNum] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum - 1][rowNum - 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum][rowNum - 1] == 9) {
+                            mineCount += 1;
+                        }
+                    } else if (colNum == 0) {
+                        if (board[colNum][rowNum - 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum][rowNum + 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum + 1][rowNum - 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum + 1][rowNum] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum + 1][rowNum + 1] == 9) {
+                            mineCount += 1;
+                        }
+                    } else if (colNum == 7) {
+                        if (board[colNum - 1][rowNum - 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum - 1][rowNum] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum - 1][rowNum + 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum][rowNum - 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum][rowNum + 1] == 9) {
+                            mineCount += 1;
+                        }
+                    } else if (rowNum == 0) {
+                        if (board[colNum - 1][rowNum] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum - 1][rowNum + 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum][rowNum + 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum + 1][rowNum] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum + 1][rowNum + 1] == 9) {
+                            mineCount += 1;
+                        }
+                    } else if (rowNum == 7) {
+                        if (board[colNum - 1][rowNum - 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum - 1][rowNum] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum][rowNum - 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum + 1][rowNum - 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum + 1][rowNum] == 9) {
+                            mineCount += 1;
+                        }
+                    } else {
+                        if (board[colNum - 1][rowNum - 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum - 1][rowNum] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum - 1][rowNum + 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum][rowNum - 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum][rowNum + 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum + 1][rowNum - 1] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum + 1][rowNum] == 9) {
+                            mineCount += 1;
+                        }
+                        if (board[colNum + 1][rowNum + 1] == 9) {
+                            mineCount += 1;
+                        }
+                    }
+                }
+                board[colNum][rowNum] = mineCount;
+            }
+        }
+        return board;
     }
 
     public static void revealNumbers(JButton[][] boardTiles, int XPos, int YPos) {
