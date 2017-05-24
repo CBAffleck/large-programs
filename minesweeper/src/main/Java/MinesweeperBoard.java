@@ -48,8 +48,8 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
     }
 
     public void mouseReleased(MouseEvent e) {
-        int x = ((JButton) e.getSource()).getX()/48; //Gets x index of tile
-        int y = ((JButton) e.getSource()).getY()/42; //Gets y index of tile
+        int y = ((JButton) e.getSource()).getX()/48; //Gets x index of tile
+        int x = ((JButton) e.getSource()).getY()/42; //Gets y index of tile
         if (e.getButton() == MouseEvent.BUTTON1) { //Checks if user left-clicks
             //System.out.println("(" + x + ", " + y + ")"); //Print out coordinate of clicked tile
             if (!isGameStarted) { //If the user clicks a tile, the timer begins
@@ -71,7 +71,7 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
             }
             boardTiles[x][y].setEnabled(true); //If it's a left click, the icon changes to the "touched" icon
             // TODO: allow icon to change to numbered icon based on number of surrounding bombs, or change to blank icon if no bombs around it
-            revealNumber(boardTiles, numBoard, y, x);
+            revealNumber(boardTiles, numBoard, x, y);
         } else if (e.getButton() == MouseEvent.BUTTON3) { //If it's a right click, do code for flagging and unflagging tile.
             if (((ImageIcon) boardTiles[x][y].getIcon()).getDescription().equals("touched")) { //Checks if the tile is already touched, so it can't be flagged anymore
                 //do nothing
