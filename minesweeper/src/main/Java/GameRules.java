@@ -10,8 +10,8 @@ public class GameRules {
     private static int numMines = 0;
 
     public static int mineGenerator(int colSize, int rowSize) { //Generates the number of mines to be placed on the board
-        int randCol = rand.nextInt(colSize - 5) + 2;
-        int randRow = rand.nextInt(rowSize - 5) + 2;
+        int randCol = rand.nextInt(colSize - 4) + 2;
+        int randRow = rand.nextInt(rowSize - 4) + 2;
         numMines = randCol*randRow;
         return numMines;
     }

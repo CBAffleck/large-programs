@@ -29,24 +29,18 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
     private long start = 0;
     private boolean isGameStarted = false;
     private int numUnderTile;
-    private int flagCount = 0;  //TODO: This is set at 10 for testing, but later will be set to whatever the randomized # of mines is.
+    private int flagCount = 0;
     private JLabel numFlags = new JLabel("Flags left: " + flagCount);
 
     private MinesweeperBoard() {
         startGui();
     }
 
-    public void mouseEntered(MouseEvent e) {
-        //throw new java.lang.UnsupportedOperationException("Not implemented");
-    }
+    public void mouseEntered(MouseEvent e) {}
 
-    public void mouseExited(MouseEvent e) {
-        //throw new java.lang.UnsupportedOperationException("Not implemented");
-    }
+    public void mouseExited(MouseEvent e) {}
 
-    public void mouseClicked(MouseEvent e) {
-        //throw new java.lang.UnsupportedOperationException("Not implemented");
-    }
+    public void mouseClicked(MouseEvent e) {}
 
     public void mouseReleased(MouseEvent e) {
         int y = ((JButton) e.getSource()).getX()/48; //Gets x index of tile
@@ -72,7 +66,6 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
                 numFlags.setText("Flags left: " + flagCount);
             }
             boardTiles[x][y].setEnabled(true); //If it's a left click, the icon changes to the "touched" icon
-            // TODO: allow icon to change to numbered icon based on number of surrounding bombs, or change to blank icon if no bombs around it
             revealNumber(boardTiles, numBoard, x, y);
         } else if (e.getButton() == MouseEvent.BUTTON3) { //If it's a right click, do code for flagging and unflagging tile.
             if (((ImageIcon) boardTiles[x][y].getIcon()).getDescription().equals("touched")) { //Checks if the tile is already touched, so it can't be flagged anymore
@@ -93,9 +86,7 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
         }
     }
 
-    public void mousePressed(MouseEvent e) {
-        //throw new java.lang.UnsupportedOperationException("Not implemented");
-    }
+    public void mousePressed(MouseEvent e) {}
 
     private void checkUnderTile(JButton[][] guiBoard, int[][] board, int x, int y) {
         numUnderTile = board[x][y];
@@ -185,16 +176,35 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
 
     private void startGui() {
         // Sets up gui for the game.
+//        gui.addKeyListener(new KeyListener() {
+//            @Override
+//            public void keyTyped(KeyEvent e) {
+//                if (e.getKeyCode() == KeyEvent.VK_N) {
+//                    for (int i = 0; i < colSize; i++) {
+//                        for (int j = 0; j < rowSize; j++) {
+//                            boardTiles[i][j].setIcon(new ImageIcon(new ImageIcon("Resources/untouched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "background"));
+//                        }
+//                    }
+//                    isGameStarted = false;
+//                }
+//            }
+//
+//            @Override
+//            public void keyPressed(KeyEvent e) {}
+//
+//            @Override
+//            public void keyReleased(KeyEvent e) {}
+//        });
         gui.setBorder(new EmptyBorder(5, 5, 5, 5));
         JToolBar tools = new JToolBar(); //create toolbar to add a new game button above the game grid
         tools.setFloatable(false);
         //Add button to toolbar
         gui.add(tools, BorderLayout.PAGE_START);
-        JButton newGame = new JButton("New Game");
-        newGame.addMouseListener(this);
-        tools.add(newGame);
-        tools.addSeparator();
-        //JLabel flagCount = new JLabel("Flags left: " + numFlags); //TODO: Fix flag count not decreasing.
+//        JButton newGame = new JButton("New Game");
+//        newGame.addMouseListener(this);
+//        tools.add(newGame);
+//        tools.addSeparator();
+        //JLabel flagCount = new JLabel("Flags left: " + numFlags);
         tools.add(numFlags);
         tools.addSeparator();
         JLabel counter = new JLabel("Time Passed: " + timePassed() + " sec"); //Shows time passed in seconds
@@ -246,6 +256,11 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
             @Override
             public void run() {
                 MinesweeperBoard msb = new MinesweeperBoard();
+//                JPanel instructions = new JPanel();
+//                JLabel notes = new JLabel("Press 'N' to start a new game. Good luck!");
+//                notes.setFont(new Font("Arial", Font.PLAIN, 12));
+//                instructions.add(notes);
+//                JOptionPane.showMessageDialog(null, instructions, "Minesweeper", JOptionPane.PLAIN_MESSAGE, new ImageIcon("Resources/9_icon.png"));
                 JFrame frame = new JFrame("Minesweeper");
                 frame.add(msb.getGui());
                 frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -253,6 +268,7 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
                 frame.setSize(400,400);
                 frame.setMinimumSize(frame.getSize()); //User can't change window size when the min and max are the same
                 frame.setMaximumSize(frame.getSize());
+                frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
             }
         };
