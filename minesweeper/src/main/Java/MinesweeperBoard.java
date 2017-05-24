@@ -26,8 +26,10 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
     private JButton[][] boardTiles = new JButton[colSize][rowSize];
     private JPanel board;
     private int[][] numBoard;
+    private int[][] visitedBoard = new int[colSize][rowSize];
     private long start = 0;
     private boolean isGameStarted = false;
+    private int numUnderTile;
     private int flagCount = 10;  //TODO: This is set at 10 for testing, but later will be set to whatever the randomized # of mines is.
     private JLabel numFlags = new JLabel("Flags left: " + flagCount);
 
@@ -95,10 +97,68 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
         //throw new java.lang.UnsupportedOperationException("Not implemented");
     }
 
-    public void revealNumber(JButton[][] guiBoard, int[][] numBoard, int xPosUserClick, int yPosUserClick) {
+    private void checkUnderTile(JButton[][] guiBoard, int[][] board, int x, int y) {
+        numUnderTile = numBoard[x][y];
+        if (numUnderTile == 0 && visitedBoard[x][y] == 0) {
+            visitedBoard[x][y] = 1;
+            revealAroundZero(guiBoard, numBoard, x, y);
+        }
+        guiBoard[x][y].setIcon(new ImageIcon(new ImageIcon("Resources/" + numUnderTile + "_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "touched"));
+    }
+
+    private void revealAroundZero(JButton[][] guiBoard, int[][] numBoard, int xPos, int yPos) {
+        if (xPos == 0 && yPos == 0) {
+            for (int xStart = xPos; xStart <= xPos + 1; xStart++) {
+                for (int yStart = yPos; yStart <= yPos + 1; yStart++) {
+                    checkUnderTile(guiBoard, numBoard, xStart, yStart);}
+            }
+        } else if (xPos == 0 && yPos == 7) {
+            for (int xStart = xPos; xStart <= xPos + 1; xStart++) {
+                for (int yStart = yPos - 1; yStart <= yPos; yStart++) {
+                    checkUnderTile(guiBoard, numBoard, xStart, yStart);}
+            }
+        } else if (xPos == 7 && yPos == 0) {
+            for (int xStart = xPos - 1; xStart <= xPos; xStart++) {
+                for (int yStart = yPos; yStart <= yPos + 1; yStart++) {
+                    checkUnderTile(guiBoard, numBoard, xStart, yStart);}
+            }
+        } else if (xPos == 7 && yPos == 7) {
+            for (int xStart = xPos - 1; xStart <= xPos; xStart++) {
+                for (int yStart = yPos - 1; yStart <= yPos; yStart++) {
+                    checkUnderTile(guiBoard, numBoard, xStart, yStart);}
+            }
+        } else if (xPos == 0) {
+            for (int xStart = xPos; xStart <= xPos + 1; xStart++) {
+                for (int yStart = yPos - 1; yStart <= yPos + 1; yStart++) {
+                    checkUnderTile(guiBoard, numBoard, xStart, yStart);}
+            }
+        } else if (xPos == 7) {
+            for (int xStart = xPos - 1; xStart <= xPos; xStart++) {
+                for (int yStart = yPos - 1; yStart <= yPos + 1; yStart++) {
+                    checkUnderTile(guiBoard, numBoard, xStart, yStart);}
+            }
+        } else if (yPos == 0) {
+            for (int xStart = xPos - 1; xStart <= xPos + 1; xStart++) {
+                for (int yStart = yPos; yStart <= yPos + 1; yStart++) {
+                    checkUnderTile(guiBoard, numBoard, xStart, yStart);}
+            }
+        } else if (yPos == 7) {
+            for (int xStart = xPos - 1; xStart <= xPos + 1; xStart++) {
+                for (int yStart = yPos - 1; yStart <= yPos; yStart++) {
+                    checkUnderTile(guiBoard, numBoard, xStart, yStart);}
+            }
+        } else {
+            for (int xStart = xPos - 1; xStart <= xPos + 1; xStart++) {
+                for (int yStart = yPos - 1; yStart <= yPos + 1; yStart++) {
+                    checkUnderTile(guiBoard, numBoard, xStart, yStart);}
+            }
+        }
+    }
+
+    private void revealNumber(JButton[][] guiBoard, int[][] numBoard, int xPosUserClick, int yPosUserClick) {
         int numUnderTile = numBoard[xPosUserClick][yPosUserClick];
         if (numBoard[xPosUserClick][yPosUserClick] == 0) {
-            guiBoard[xPosUserClick][yPosUserClick].setIcon(new ImageIcon(new ImageIcon("Resources/" + numUnderTile + "_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "touched"));
+            revealAroundZero(guiBoard, numBoard, xPosUserClick, yPosUserClick);
         } else if (numBoard[xPosUserClick][yPosUserClick] == 9) {
             guiBoard[xPosUserClick][yPosUserClick].setIcon(new ImageIcon(new ImageIcon("Resources/" + numUnderTile + "_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "touched"));
         } else {
