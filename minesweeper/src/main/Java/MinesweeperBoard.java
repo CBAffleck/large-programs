@@ -1,3 +1,5 @@
+import com.sun.tools.javac.comp.Flow;
+
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
@@ -30,7 +32,10 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
     private boolean isGameStarted = false;
     private int numUnderTile;
     private int flagCount = 0;
+    private int originalFlagCount;
+    private int numUntouched = colSize*rowSize;
     private JLabel numFlags = new JLabel("Flags left: " + flagCount);
+    private JFrame winWindow = new JFrame();
 
     private MinesweeperBoard() {
         startGui();
@@ -48,9 +53,11 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
         if (e.getButton() == MouseEvent.BUTTON1) { //Checks if user left-clicks
             //System.out.println("(" + x + ", " + y + ")"); //Print out coordinate of clicked tile
             if (!isGameStarted) { //If the user clicks a tile, the game starts
+                numUntouched -= 1;
                 isGameStarted = true;
                 start = System.currentTimeMillis(); //Begins timer
                 flagCount = mineGenerator(colSize,rowSize); //Gets random number of mines and sets an equal number of flags
+                originalFlagCount = flagCount;
                 numFlags.setText("Flags left: " + flagCount);
                 numBoard = fillBoard(placeMines(colSize, rowSize, x, y));
                 for (int i = 0; i < numBoard.length; i++) {
@@ -61,16 +68,59 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
                 }
                 System.out.println("\n");
             }
+            if (numUntouched - originalFlagCount == 0) {
+                long totalTime = timePassed();
+                winWindow = new JFrame();
+                winWindow.setSize(new Dimension(200, 200));
+                winWindow.setLocationByPlatform(true);
+                winWindow.setLocationRelativeTo(null);
+                winWindow.setMinimumSize(winWindow.getSize());
+                winWindow.setMaximumSize(winWindow.getSize());
+                winWindow.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+                JLabel message = new JLabel("You win!");
+                winWindow.getContentPane().add(message);
+                JLabel stats = new JLabel("Time: " + totalTime + " seconds");
+                winWindow.getContentPane().add(stats);
+                JButton newGame = new JButton("New Game");
+                newGame.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        for (int i = 0; i < boardTiles.length; i++) {
+                            for (int j = 0; j < boardTiles[i].length; j++) {
+                                boardTiles[j][i].setIcon(new ImageIcon(new ImageIcon("Resources/untouched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "background"));
+                                boardTiles[j][i].setEnabled(true);
+                            }
+                        }
+                        isGameStarted = false;
+                        numUntouched = colSize*rowSize;
+                        winWindow.dispose();
+                    }
+                });
+                winWindow.getContentPane().add(newGame);
+                JButton quit = new JButton("Quit Game");
+                quit.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        System.exit(0);
+                    }
+                });
+                winWindow.getContentPane().add(quit);
+                winWindow.setVisible(true);
+            }
+            System.out.println("\n");
             if (!boardTiles[x][y].isEnabled()) { //If a flag is left-clicked, and the tile becomes "touched", the the flag count increases by one.
                 flagCount += 1;
                 numFlags.setText("Flags left: " + flagCount);
             }
             boardTiles[x][y].setEnabled(true); //If it's a left click, the icon changes to the "touched" icon
+            numUntouched -= 1;
             revealNumber(boardTiles, numBoard, visitedBoard, x, y, numUnderTile);
+            numUntouched = untouchedTiles(boardTiles);
         } else if (e.getButton() == MouseEvent.BUTTON3) { //If it's a right click, do code for flagging and unflagging tile.
             if (((ImageIcon) boardTiles[x][y].getIcon()).getDescription().equals("touched")) { //Checks if the tile is already touched, so it can't be flagged anymore
                 //do nothing
             } else if (boardTiles[x][y].isEnabled() && flagCount != 0) { //If untouched, change icon to flag, letting the user remember the mine location
+                numUntouched -= 1;
                 boardTiles[x][y].setEnabled(false); //Disabled icon is the flag
                 boardTiles[x][y].setDisabledIcon(new ImageIcon(new ImageIcon("Resources/flagged_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "flagged"));
                 flagCount -= 1;
@@ -78,6 +128,7 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
             } else if (boardTiles[x][y].isEnabled()) { //If untouched, and no flags remain, do nothing when right-clicked.
                 //do nothing
             } else {
+                numUntouched += 1;
                 boardTiles[x][y].setEnabled(true); //If the icon is a flag, this unflags the icon.
                 boardTiles[x][y].setIcon(new ImageIcon(new ImageIcon("Resources/untouched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "background"));
                 flagCount += 1;
@@ -88,12 +139,61 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
 
     public void mousePressed(MouseEvent e) {}
 
+    private int untouchedTiles(JButton [][] board) {
+        int numUntouched = 0;
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (!((ImageIcon) boardTiles[i][j].getIcon()).getDescription().equals("touched")) {
+                    numUntouched += 1;
+                }
+            }
+        }
+        return numUntouched;
+    }
+
     private void revealNumber(JButton[][] guiBoard, int[][] numBoard, int[][] visitedBoard, int xPosUserClick, int yPosUserClick, int numUnderTile) {
         numUnderTile = numBoard[xPosUserClick][yPosUserClick];
         if (numBoard[xPosUserClick][yPosUserClick] == 0) {
             revealAroundZero(guiBoard, numBoard, visitedBoard, xPosUserClick, yPosUserClick, numUnderTile, colSize);
         } else if (numBoard[xPosUserClick][yPosUserClick] == 9) {
             guiBoard[xPosUserClick][yPosUserClick].setIcon(new ImageIcon(new ImageIcon("Resources/" + numUnderTile + "_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "touched"));
+            long totalTime = timePassed();
+            JFrame winWindow = new JFrame();
+            winWindow.setSize(new Dimension(200, 200));
+            winWindow.setLocationByPlatform(true);
+            winWindow.setLocationRelativeTo(null);
+            winWindow.setMinimumSize(winWindow.getSize());
+            winWindow.setMaximumSize(winWindow.getSize());
+            winWindow.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+            JLabel message = new JLabel("You hit a mine!");
+            winWindow.getContentPane().add(message);
+            JLabel stats = new JLabel("Time: " + totalTime + " seconds");
+            winWindow.getContentPane().add(stats);
+            JButton newGame = new JButton("New Game");
+            newGame.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    for (int i = 0; i < boardTiles.length; i++) {
+                        for (int j = 0; j < boardTiles[i].length; j++) {
+                            boardTiles[j][i].setIcon(new ImageIcon(new ImageIcon("Resources/untouched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "background"));
+                            boardTiles[j][i].setEnabled(true);
+                        }
+                    }
+                    isGameStarted = false;
+                    numUntouched = colSize*rowSize;
+                    winWindow.dispose();
+                }
+            });
+            winWindow.getContentPane().add(newGame);
+            JButton quit = new JButton("Quit Game");
+            quit.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.exit(0);
+                }
+            });
+            winWindow.getContentPane().add(quit);
+            winWindow.setVisible(true);
         } else {
             guiBoard[xPosUserClick][yPosUserClick].setIcon(new ImageIcon(new ImageIcon("Resources/" + numUnderTile + "_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "touched"));
         }
@@ -108,36 +208,11 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
     }
 
     private void startGui() {
-        // Sets up gui for the game.
-//        gui.addKeyListener(new KeyListener() {
-//            @Override
-//            public void keyTyped(KeyEvent e) {
-//                if (e.getKeyCode() == KeyEvent.VK_N) {
-//                    for (int i = 0; i < colSize; i++) {
-//                        for (int j = 0; j < rowSize; j++) {
-//                            boardTiles[i][j].setIcon(new ImageIcon(new ImageIcon("Resources/untouched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "background"));
-//                        }
-//                    }
-//                    isGameStarted = false;
-//                }
-//            }
-//
-//            @Override
-//            public void keyPressed(KeyEvent e) {}
-//
-//            @Override
-//            public void keyReleased(KeyEvent e) {}
-//        });
         gui.setBorder(new EmptyBorder(5, 5, 5, 5));
         JToolBar tools = new JToolBar(); //create toolbar to add a new game button above the game grid
         tools.setFloatable(false);
         //Add button to toolbar
         gui.add(tools, BorderLayout.PAGE_START);
-//        JButton newGame = new JButton("New Game");
-//        newGame.addMouseListener(this);
-//        tools.add(newGame);
-//        tools.addSeparator();
-        //JLabel flagCount = new JLabel("Flags left: " + numFlags);
         tools.add(numFlags);
         tools.addSeparator();
         JLabel counter = new JLabel("Time Passed: " + timePassed() + " sec"); //Shows time passed in seconds

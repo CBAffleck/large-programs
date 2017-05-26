@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b2f5519-51d3-4dc5-8e90-33d462fca8c7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Java/GameRules.java" afterPath="$PROJECT_DIR$/src/main/Java/GameRules.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Java/MinesweeperBoard.java" afterPath="$PROJECT_DIR$/src/main/Java/MinesweeperBoard.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,14 +24,18 @@
       <file leaf-file-name="MinesweeperBoard.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/Java/MinesweeperBoard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1200">
-              <caret line="94" column="65" lean-forward="false" selection-start-line="94" selection-start-column="65" selection-end-line="94" selection-end-column="65" />
+            <state relative-caret-position="405">
+              <caret line="40" column="10" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />
-                <element signature="e#5465#5493#0" expanded="false" />
-                <element signature="e#6557#6609#0" expanded="false" />
-                <element signature="e#8784#8837#0" expanded="false" />
+                <element signature="class#3554:4314" expanded="false" />
+                <element signature="method#actionPerformed#0;class#3554:4314" expanded="false" />
+                <element signature="class#4474:4667" expanded="false" />
+                <element signature="class#8714:9422" expanded="false" />
+                <element signature="method#actionPerformed#0;class#8714:9422" expanded="false" />
+                <element signature="class#9570:9743" expanded="false" />
+                <element signature="e#12607#12660#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -100,8 +104,8 @@
         <option value="$PROJECT_DIR$/src/GameRules.java" />
         <option value="$PROJECT_DIR$/src/MinesweeperBoard.java" />
         <option value="$PROJECT_DIR$/src/Test/Java/gameRulesTest.java" />
-        <option value="$PROJECT_DIR$/src/main/Java/MinesweeperBoard.java" />
         <option value="$PROJECT_DIR$/src/main/Java/GameRules.java" />
+        <option value="$PROJECT_DIR$/src/main/Java/MinesweeperBoard.java" />
       </list>
     </option>
   </component>
@@ -659,12 +663,12 @@
       <workItem from="1495507519217" duration="32325000" />
       <workItem from="1495659680607" duration="6882000" />
       <workItem from="1495766864597" duration="4825000" />
-      <workItem from="1495822811512" duration="668000" />
+      <workItem from="1495822811512" duration="6110000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79072000" />
+    <option name="totallyTimeSpent" value="84514000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="830" extended-state="6" />
@@ -725,9 +729,13 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />
-            <element signature="e#5465#5493#0" expanded="false" />
-            <element signature="e#6557#6609#0" expanded="false" />
-            <element signature="e#8784#8837#0" expanded="false" />
+            <element signature="class#3554:4314" expanded="false" />
+            <element signature="method#actionPerformed#0;class#3554:4314" expanded="false" />
+            <element signature="class#4474:4667" expanded="false" />
+            <element signature="class#8714:9422" expanded="false" />
+            <element signature="method#actionPerformed#0;class#8714:9422" expanded="false" />
+            <element signature="class#9570:9743" expanded="false" />
+            <element signature="e#12607#12660#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -763,9 +771,13 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />
-            <element signature="e#5465#5493#0" expanded="false" />
-            <element signature="e#6557#6609#0" expanded="false" />
-            <element signature="e#8784#8837#0" expanded="false" />
+            <element signature="class#3554:4314" expanded="false" />
+            <element signature="method#actionPerformed#0;class#3554:4314" expanded="false" />
+            <element signature="class#4474:4667" expanded="false" />
+            <element signature="class#8714:9422" expanded="false" />
+            <element signature="method#actionPerformed#0;class#8714:9422" expanded="false" />
+            <element signature="class#9570:9743" expanded="false" />
+            <element signature="e#12607#12660#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -801,9 +813,13 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />
-            <element signature="e#5465#5493#0" expanded="false" />
-            <element signature="e#6557#6609#0" expanded="false" />
-            <element signature="e#8784#8837#0" expanded="false" />
+            <element signature="class#3554:4314" expanded="false" />
+            <element signature="method#actionPerformed#0;class#3554:4314" expanded="false" />
+            <element signature="class#4474:4667" expanded="false" />
+            <element signature="class#8714:9422" expanded="false" />
+            <element signature="method#actionPerformed#0;class#8714:9422" expanded="false" />
+            <element signature="class#9570:9743" expanded="false" />
+            <element signature="e#12607#12660#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -872,14 +888,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Java/MinesweeperBoard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="94" column="65" lean-forward="false" selection-start-line="94" selection-start-column="65" selection-end-line="94" selection-end-column="65" />
+        <state relative-caret-position="405">
+          <caret line="40" column="10" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />
-            <element signature="e#5465#5493#0" expanded="false" />
-            <element signature="e#6557#6609#0" expanded="false" />
-            <element signature="e#8784#8837#0" expanded="false" />
+            <element signature="class#3554:4314" expanded="false" />
+            <element signature="method#actionPerformed#0;class#3554:4314" expanded="false" />
+            <element signature="class#4474:4667" expanded="false" />
+            <element signature="class#8714:9422" expanded="false" />
+            <element signature="method#actionPerformed#0;class#8714:9422" expanded="false" />
+            <element signature="class#9570:9743" expanded="false" />
+            <element signature="e#12607#12660#0" expanded="false" />
           </folding>
         </state>
       </provider>
