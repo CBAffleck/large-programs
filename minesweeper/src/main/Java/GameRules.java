@@ -9,12 +9,21 @@ public class GameRules {
     static Random rand = new Random();
     private static int numMines = 0;
 
-    public static int mineGenerator(int colSize, int rowSize) { //Generates the number of mines to be placed on the board
+    /*
+        Generates the number of mines to be placed on the board, returns as int.
+     */
+
+    public static int mineGenerator(int colSize, int rowSize) {
         int randCol = rand.nextInt(colSize - 4) + 2;
         int randRow = rand.nextInt(rowSize - 4) + 2;
         numMines = randCol*randRow;
         return numMines;
     }
+
+    /*
+        Using the number of mines from the mineGenerator, placeMines places the mines randomly on the board until all of the
+        mines have been placed. The bomb is never placed under the user's first click, and the surrounding area is given space.
+     */
 
     public static int[][] placeMines(int colSize, int rowSize, int xPosUserClick, int yPosUserClick) {
         board = new int[colSize][rowSize];
@@ -22,9 +31,15 @@ public class GameRules {
             int randCol = rand.nextInt(colSize - 1);
             int randRow = rand.nextInt(rowSize -1);
             //Places mines randomly, but gives some space around player to start off
-            if (board[randCol][randRow] == 0 && (randCol != xPosUserClick || randRow != yPosUserClick ||
-                                                 randCol != xPosUserClick + 1 || randRow != yPosUserClick + 1 ||
-                                                 randCol != xPosUserClick - 1 || randRow != yPosUserClick - 1)) {
+            if (board[randCol][randRow] == 0 && (randCol != xPosUserClick || randRow != yPosUserClick)
+                                             && (randCol != xPosUserClick || randRow != yPosUserClick + 1)
+                                             && (randCol != xPosUserClick || randRow != yPosUserClick - 1)
+                                             && (randCol != xPosUserClick + 1 || randRow != yPosUserClick + 1)
+                                             && (randCol != xPosUserClick + 1 || randRow != yPosUserClick)
+                                             && (randCol != xPosUserClick + 1 || randRow != yPosUserClick - 1)
+                                             && (randCol != xPosUserClick - 1 || randRow != yPosUserClick + 1)
+                                             && (randCol != xPosUserClick - 1 || randRow != yPosUserClick)
+                                             && (randCol != xPosUserClick - 1 || randRow != yPosUserClick - 1)) {
                 board[randCol][randRow] = 9; //This number represents the placement of a mine
                 numMines -= 1;
             }
@@ -32,15 +47,21 @@ public class GameRules {
         return board;
     }
 
+    /*
+        For each tile in the board, checks the tiles around it for a mine, and for each one increments the mineCount. Once all
+         tiles are checked, the mineCount is placed in that spot on the board. This is used by the GUI to pick the correct numbered
+         icon.
+     */
+
     public static int[][] fillBoard(int[][] board) {
         int rowNum, colNum;
         for (colNum = 0; colNum < board.length; colNum++) {
             for (rowNum = 0; rowNum < board[colNum].length; rowNum++) {
                 int mineCount = 0;
-                if (board[colNum][rowNum] == 9) {
+                if (board[colNum][rowNum] == 9) {                       //Skip tile if mine is already there
                     //do nothing, go to next rowNum
                 } else {
-                    if (colNum == 0 && rowNum == 0) {
+                    if (colNum == 0 && rowNum == 0) {                   //upper left corner
                         if (board[colNum][rowNum + 1] == 9) {
                             mineCount += 1;
                         }
@@ -50,7 +71,7 @@ public class GameRules {
                         if (board[colNum + 1][rowNum + 1] == 9) {
                             mineCount += 1;
                         }
-                    } else if (colNum == 0 && rowNum == 7) {
+                    } else if (colNum == 0 && rowNum == 7) {            //bottom left corner
                         if (board[colNum][rowNum - 1] == 9) {
                             mineCount += 1;
                         }
@@ -60,7 +81,7 @@ public class GameRules {
                         if (board[colNum + 1][rowNum - 1] == 9) {
                             mineCount += 1;
                         }
-                    } else if (colNum == 7 && rowNum == 0) {
+                    } else if (colNum == 7 && rowNum == 0) {            //top right corner
                         if (board[colNum - 1][rowNum] == 9) {
                             mineCount += 1;
                         }
@@ -70,7 +91,7 @@ public class GameRules {
                         if (board[colNum][rowNum + 1] == 9) {
                             mineCount += 1;
                         }
-                    } else if (colNum == 7 && rowNum == 7) {
+                    } else if (colNum == 7 && rowNum == 7) {            //bottom right corner
                         if (board[colNum - 1][rowNum] == 9) {
                             mineCount += 1;
                         }
@@ -80,7 +101,7 @@ public class GameRules {
                         if (board[colNum][rowNum - 1] == 9) {
                             mineCount += 1;
                         }
-                    } else if (colNum == 0) {
+                    } else if (colNum == 0) {                           //left side
                         if (board[colNum][rowNum - 1] == 9) {
                             mineCount += 1;
                         }
@@ -96,7 +117,7 @@ public class GameRules {
                         if (board[colNum + 1][rowNum + 1] == 9) {
                             mineCount += 1;
                         }
-                    } else if (colNum == 7) {
+                    } else if (colNum == 7) {                           //right side
                         if (board[colNum - 1][rowNum - 1] == 9) {
                             mineCount += 1;
                         }
@@ -112,7 +133,7 @@ public class GameRules {
                         if (board[colNum][rowNum + 1] == 9) {
                             mineCount += 1;
                         }
-                    } else if (rowNum == 0) {
+                    } else if (rowNum == 0) {                           //top side
                         if (board[colNum - 1][rowNum] == 9) {
                             mineCount += 1;
                         }
@@ -128,7 +149,7 @@ public class GameRules {
                         if (board[colNum + 1][rowNum + 1] == 9) {
                             mineCount += 1;
                         }
-                    } else if (rowNum == 7) {
+                    } else if (rowNum == 7) {                           //bottom side
                         if (board[colNum - 1][rowNum - 1] == 9) {
                             mineCount += 1;
                         }
@@ -144,7 +165,7 @@ public class GameRules {
                         if (board[colNum + 1][rowNum] == 9) {
                             mineCount += 1;
                         }
-                    } else {
+                    } else {                                            //everywhere else on the board
                         if (board[colNum - 1][rowNum - 1] == 9) {
                             mineCount += 1;
                         }
@@ -192,8 +213,4 @@ public class GameRules {
 
     fillBoard: After placeMines is called, fillBoard will step through the tiles in the grid and place a number icon at each tile corresponding
     to how many bombs surround that tile. If no bomb is in the surrounding 8 tiles, the tile is blank.
-
-    revealNumbers: If a tile is clicked and it contains a number, only reveal that tile. Otherwise, if a blank tile is clicked, reveal
-    the tiles on all sides. If any of those tiles are blank, then each of those tiles reveals all tiles surrounding it, and so on,
-    until the point clicked is surrounded by numbered tiles.
  */
