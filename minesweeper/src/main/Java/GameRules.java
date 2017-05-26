@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.awt.*;
 import java.util.Random;
 
 /**
@@ -71,7 +73,7 @@ public class GameRules {
                         if (board[colNum + 1][rowNum + 1] == 9) {
                             mineCount += 1;
                         }
-                    } else if (colNum == 0 && rowNum == 7) {            //bottom left corner
+                    } else if (colNum == 0 && rowNum == board[colNum].length - 1) {            //bottom left corner
                         if (board[colNum][rowNum - 1] == 9) {
                             mineCount += 1;
                         }
@@ -81,7 +83,7 @@ public class GameRules {
                         if (board[colNum + 1][rowNum - 1] == 9) {
                             mineCount += 1;
                         }
-                    } else if (colNum == 7 && rowNum == 0) {            //top right corner
+                    } else if (colNum == board.length - 1 && rowNum == 0) {            //top right corner
                         if (board[colNum - 1][rowNum] == 9) {
                             mineCount += 1;
                         }
@@ -91,7 +93,7 @@ public class GameRules {
                         if (board[colNum][rowNum + 1] == 9) {
                             mineCount += 1;
                         }
-                    } else if (colNum == 7 && rowNum == 7) {            //bottom right corner
+                    } else if (colNum == board.length - 1 && rowNum == board[colNum].length - 1) {            //bottom right corner
                         if (board[colNum - 1][rowNum] == 9) {
                             mineCount += 1;
                         }
@@ -117,7 +119,7 @@ public class GameRules {
                         if (board[colNum + 1][rowNum + 1] == 9) {
                             mineCount += 1;
                         }
-                    } else if (colNum == 7) {                           //right side
+                    } else if (colNum == board.length - 1) {            //right side
                         if (board[colNum - 1][rowNum - 1] == 9) {
                             mineCount += 1;
                         }
@@ -149,7 +151,7 @@ public class GameRules {
                         if (board[colNum + 1][rowNum + 1] == 9) {
                             mineCount += 1;
                         }
-                    } else if (rowNum == 7) {                           //bottom side
+                    } else if (rowNum == board[colNum].length - 1) {    //bottom side
                         if (board[colNum - 1][rowNum - 1] == 9) {
                             mineCount += 1;
                         }
@@ -203,6 +205,73 @@ public class GameRules {
             }
         }
         return board;
+    }
+
+    private void checkUnderTile(JButton[][] guiBoard, int[][] board, int[][] visitedBoard, int x, int y, int numUnderTile, int colNum) {
+        numUnderTile = board[x][y];
+        if (numUnderTile == 0 && visitedBoard[x][y] == 0) {
+            visitedBoard[x][y] = 1;
+            revealAroundZero(guiBoard, board, visitedBoard, x, y, numUnderTile, colNum);
+        }
+        guiBoard[x][y].setIcon(new ImageIcon(new ImageIcon("Resources/" + numUnderTile + "_icon.png").getImage().getScaledInstance(44,38, Image.SCALE_SMOOTH), "touched"));
+    }
+
+    public void revealAroundZero(JButton[][] guiBoard, int[][] numBoard, int[][] visitedBoard, int xPos, int yPos, int numUnderTile, int colNum) {
+        if (xPos == 0 && yPos == 0) {
+            for (int xStart = xPos; xStart <= xPos + 1; xStart++) {
+                for (int yStart = yPos; yStart <= yPos + 1; yStart++) {
+                    checkUnderTile(guiBoard, numBoard, visitedBoard, xStart, yStart, numUnderTile, colNum);
+                }
+            }
+        } else if (xPos == 0 && yPos == numBoard[colNum - 1].length - 1) {
+            for (int xStart = xPos; xStart <= xPos + 1; xStart++) {
+                for (int yStart = yPos - 1; yStart <= yPos; yStart++) {
+                    checkUnderTile(guiBoard, numBoard, visitedBoard, xStart, yStart, numUnderTile, colNum);
+                }
+            }
+        } else if (xPos == numBoard.length - 1 && yPos == 0) {
+            for (int xStart = xPos - 1; xStart <= xPos; xStart++) {
+                for (int yStart = yPos; yStart <= yPos + 1; yStart++) {
+                    checkUnderTile(guiBoard, numBoard, visitedBoard, xStart, yStart, numUnderTile, colNum);
+                }
+            }
+        } else if (xPos == numBoard.length - 1 && yPos == numBoard[colNum - 1].length - 1) {
+            for (int xStart = xPos - 1; xStart <= xPos; xStart++) {
+                for (int yStart = yPos - 1; yStart <= yPos; yStart++) {
+                    checkUnderTile(guiBoard, numBoard, visitedBoard, xStart, yStart, numUnderTile, colNum);
+                }
+            }
+        } else if (xPos == 0) {
+            for (int xStart = xPos; xStart <= xPos + 1; xStart++) {
+                for (int yStart = yPos - 1; yStart <= yPos + 1; yStart++) {
+                    checkUnderTile(guiBoard, numBoard, visitedBoard, xStart, yStart, numUnderTile, colNum);
+                }
+            }
+        } else if (xPos == numBoard.length - 1) {
+            for (int xStart = xPos - 1; xStart <= xPos; xStart++) {
+                for (int yStart = yPos - 1; yStart <= yPos + 1; yStart++) {
+                    checkUnderTile(guiBoard, numBoard, visitedBoard, xStart, yStart, numUnderTile, colNum);
+                }
+            }
+        } else if (yPos == 0) {
+            for (int xStart = xPos - 1; xStart <= xPos + 1; xStart++) {
+                for (int yStart = yPos; yStart <= yPos + 1; yStart++) {
+                    checkUnderTile(guiBoard, numBoard, visitedBoard, xStart, yStart, numUnderTile, colNum);
+                }
+            }
+        } else if (yPos == numBoard[colNum - 1].length - 1) {
+            for (int xStart = xPos - 1; xStart <= xPos + 1; xStart++) {
+                for (int yStart = yPos - 1; yStart <= yPos; yStart++) {
+                    checkUnderTile(guiBoard, numBoard, visitedBoard, xStart, yStart, numUnderTile, colNum);
+                }
+            }
+        } else {
+            for (int xStart = xPos - 1; xStart <= xPos + 1; xStart++) {
+                for (int yStart = yPos - 1; yStart <= yPos + 1; yStart++) {
+                    checkUnderTile(guiBoard, numBoard, visitedBoard, xStart, yStart, numUnderTile, colNum);
+                }
+            }
+        }
     }
 
 }
