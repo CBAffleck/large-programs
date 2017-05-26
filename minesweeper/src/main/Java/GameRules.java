@@ -207,6 +207,12 @@ public class GameRules {
         return board;
     }
 
+    /*
+        checkUnderTile checks what number in the reference board corresponds to the tile clicked in the GUI board. If the number under the tile
+        is 0 and the corresponding position in visitedBoard hasn't been visited yet, then reveal the tiles around it. Otherwise, set the GUI tile icon
+        to the correct numbered icon.
+     */
+
     private void checkUnderTile(JButton[][] guiBoard, int[][] board, int[][] visitedBoard, int x, int y, int numUnderTile, int colNum) {
         numUnderTile = board[x][y];
         if (numUnderTile == 0 && visitedBoard[x][y] == 0) {
@@ -215,6 +221,12 @@ public class GameRules {
         }
         guiBoard[x][y].setIcon(new ImageIcon(new ImageIcon("Resources/" + numUnderTile + "_icon.png").getImage().getScaledInstance(44,38, Image.SCALE_SMOOTH), "touched"));
     }
+
+    /*
+        After the user clicks on a tile that corresponds to a 0 in numBoard, revealAroundZero looks at all of the tiles surrounding the clicked tile,
+        and checks each of them using checkUnderTile to see what icons should be placed in the GUI. The if statements take care of different cases
+        such as corner tiles and tiles on the edge of the board.
+     */
 
     public void revealAroundZero(JButton[][] guiBoard, int[][] numBoard, int[][] visitedBoard, int xPos, int yPos, int numUnderTile, int colNum) {
         if (xPos == 0 && yPos == 0) {
@@ -275,11 +287,3 @@ public class GameRules {
     }
 
 }
-
-/*
-    placeMines: Chooses random number of mines less than or equal to the number of tiles per row/column minus 1. Then randomly places
-    them on a 2D int array. This will be an int array representation of the jbutton board.
-
-    fillBoard: After placeMines is called, fillBoard will step through the tiles in the grid and place a number icon at each tile corresponding
-    to how many bombs surround that tile. If no bomb is in the surrounding 8 tiles, the tile is blank.
- */
