@@ -66,7 +66,6 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
                     }
                     System.out.println();
                 }
-                System.out.println("\n");
             }
             if (numUntouched - originalFlagCount == 0) {
                 long totalTime = timePassed();
@@ -107,7 +106,6 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
                 winWindow.getContentPane().add(quit);
                 winWindow.setVisible(true);
             }
-            System.out.println("\n");
             if (!boardTiles[x][y].isEnabled()) { //If a flag is left-clicked, and the tile becomes "touched", the the flag count increases by one.
                 flagCount += 1;
                 numFlags.setText("Flags left: " + flagCount);
@@ -275,7 +273,7 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
                 frame.setLocationByPlatform(true);
                 frame.setSize(400,400);
                 frame.setMinimumSize(frame.getSize()); //User can't change window size when the min and max are the same
-                frame.setMaximumSize(frame.getSize());
+                //frame.setMaximumSize(frame.getSize());
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
             }

@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="MinesweeperBoard:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="9b2f5519-51d3-4dc5-8e90-33d462fca8c7" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Java/MinesweeperBoard.java" afterPath="$PROJECT_DIR$/src/main/Java/MinesweeperBoard.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -24,18 +31,20 @@
       <file leaf-file-name="MinesweeperBoard.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/Java/MinesweeperBoard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="40" column="10" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+            <state relative-caret-position="240">
+              <caret line="28" column="29" lean-forward="true" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />
-                <element signature="class#3554:4314" expanded="false" />
-                <element signature="method#actionPerformed#0;class#3554:4314" expanded="false" />
-                <element signature="class#4474:4667" expanded="false" />
-                <element signature="class#8714:9422" expanded="false" />
-                <element signature="method#actionPerformed#0;class#8714:9422" expanded="false" />
-                <element signature="class#9570:9743" expanded="false" />
-                <element signature="e#12607#12660#0" expanded="false" />
+                <element signature="e#1264#1265#0" expanded="true" />
+                <element signature="e#1290#1291#0" expanded="true" />
+                <element signature="class#3512:4272" expanded="false" />
+                <element signature="method#actionPerformed#0;class#3512:4272" expanded="false" />
+                <element signature="class#4432:4625" expanded="false" />
+                <element signature="class#8634:9342" expanded="false" />
+                <element signature="method#actionPerformed#0;class#8634:9342" expanded="false" />
+                <element signature="class#9490:9663" expanded="false" />
+                <element signature="e#12527#12580#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -85,6 +94,7 @@
       <find>touched_icon</find>
       <find>new g</find>
       <find>7</find>
+      <find>system.out</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -136,6 +146,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
@@ -208,15 +219,53 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Minesweeper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minesweeper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="out" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Minesweeper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minesweeper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="out" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="artifacts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MinesweeperBoard_jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="js.eslint.eslintPackage" value="" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -226,7 +275,7 @@
       <recent name="$PROJECT_DIR$/src/main/Java" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MinesweeperBoard">
+  <component name="RunManager" selected="JAR Application.MinesweeperBoard.jar">
     <configuration default="false" name="gameRulesTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="gameRulesTest" />
@@ -239,6 +288,12 @@
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="MinesweeperBoard" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="MinesweeperBoard.jar" type="JarApplication" factoryName="JAR Application" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/MinesweeperBoard_jar/MinesweeperBoard.jar" />
       <envs />
       <method />
     </configuration>
@@ -637,13 +692,15 @@
       <envs />
       <method />
     </configuration>
-    <list size="2">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Application.MinesweeperBoard" />
       <item index="1" class="java.lang.String" itemvalue="Application.gameRulesTest" />
+      <item index="2" class="java.lang.String" itemvalue="JAR Application.MinesweeperBoard.jar" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.gameRulesTest" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="JAR Application.MinesweeperBoard.jar" />
+        <item index="1" class="java.lang.String" itemvalue="Application.gameRulesTest" />
       </list>
     </recent_temporary>
   </component>
@@ -663,16 +720,23 @@
       <workItem from="1495507519217" duration="32325000" />
       <workItem from="1495659680607" duration="6882000" />
       <workItem from="1495766864597" duration="4825000" />
-      <workItem from="1495822811512" duration="6110000" />
+      <workItem from="1495822811512" duration="6677000" />
+      <workItem from="1495835088135" duration="181000" />
+      <workItem from="1495941323643" duration="344000" />
+      <workItem from="1496030659712" duration="182000" />
+      <workItem from="1496111891254" duration="530000" />
+      <workItem from="1496182742743" duration="216000" />
+      <workItem from="1496291076871" duration="167000" />
+      <workItem from="1496462373334" duration="1593000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84514000" />
+    <option name="totallyTimeSpent" value="88294000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="830" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -683,20 +747,20 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22764228" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22764228" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19527897" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21030043" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39972898" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39972898" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -724,18 +788,108 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/Java/MinesweeperBoard.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />
+            <element signature="e#1264#1265#0" expanded="true" />
+            <element signature="e#1290#1291#0" expanded="true" />
+            <element signature="class#3512:4272" expanded="false" />
+            <element signature="method#actionPerformed#0;class#3512:4272" expanded="false" />
+            <element signature="class#4432:4625" expanded="false" />
+            <element signature="class#8634:9342" expanded="false" />
+            <element signature="method#actionPerformed#0;class#8634:9342" expanded="false" />
+            <element signature="class#9490:9663" expanded="false" />
+            <element signature="e#12527#12580#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Java/GameRules.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#GameRules#0" expanded="false" />
+            <element signature="e#9413#9475#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Test/Java/gameRulesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1710">
+          <caret line="133" column="89" lean-forward="false" selection-start-line="133" selection-start-column="89" selection-end-line="133" selection-end-column="89" />
+          <folding>
+            <element signature="docComment;class#gameRulesTest#0" expanded="false" />
+            <element signature="method#checkLessThan#0;class#gameRulesTest#0" expanded="false" />
+            <element signature="method#checkMineGenerator#0;class#gameRulesTest#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Java/MinesweeperBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />
+            <element signature="e#1264#1265#0" expanded="true" />
+            <element signature="e#1290#1291#0" expanded="true" />
+            <element signature="class#3512:4272" expanded="false" />
+            <element signature="method#actionPerformed#0;class#3512:4272" expanded="false" />
+            <element signature="class#4432:4625" expanded="false" />
+            <element signature="class#8634:9342" expanded="false" />
+            <element signature="method#actionPerformed#0;class#8634:9342" expanded="false" />
+            <element signature="class#9490:9663" expanded="false" />
+            <element signature="e#12527#12580#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Java/GameRules.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#GameRules#0" expanded="false" />
+            <element signature="e#9413#9475#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Test/Java/gameRulesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1710">
+          <caret line="133" column="89" lean-forward="false" selection-start-line="133" selection-start-column="89" selection-end-line="133" selection-end-column="89" />
+          <folding>
+            <element signature="docComment;class#gameRulesTest#0" expanded="false" />
+            <element signature="method#checkLessThan#0;class#gameRulesTest#0" expanded="false" />
+            <element signature="method#checkMineGenerator#0;class#gameRulesTest#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Java/MinesweeperBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1410">
           <caret line="94" column="65" lean-forward="true" selection-start-line="94" selection-start-column="65" selection-end-line="94" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />
-            <element signature="class#3554:4314" expanded="false" />
-            <element signature="method#actionPerformed#0;class#3554:4314" expanded="false" />
-            <element signature="class#4474:4667" expanded="false" />
-            <element signature="class#8714:9422" expanded="false" />
-            <element signature="method#actionPerformed#0;class#8714:9422" expanded="false" />
-            <element signature="class#9570:9743" expanded="false" />
-            <element signature="e#12607#12660#0" expanded="false" />
+            <element signature="e#1264#1265#0" expanded="true" />
+            <element signature="e#1290#1291#0" expanded="true" />
+            <element signature="class#3512:4272" expanded="false" />
+            <element signature="method#actionPerformed#0;class#3512:4272" expanded="false" />
+            <element signature="class#4432:4625" expanded="false" />
+            <element signature="class#8634:9342" expanded="false" />
+            <element signature="method#actionPerformed#0;class#8634:9342" expanded="false" />
+            <element signature="class#9490:9663" expanded="false" />
+            <element signature="e#12527#12580#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -771,13 +925,15 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />
-            <element signature="class#3554:4314" expanded="false" />
-            <element signature="method#actionPerformed#0;class#3554:4314" expanded="false" />
-            <element signature="class#4474:4667" expanded="false" />
-            <element signature="class#8714:9422" expanded="false" />
-            <element signature="method#actionPerformed#0;class#8714:9422" expanded="false" />
-            <element signature="class#9570:9743" expanded="false" />
-            <element signature="e#12607#12660#0" expanded="false" />
+            <element signature="e#1264#1265#0" expanded="true" />
+            <element signature="e#1290#1291#0" expanded="true" />
+            <element signature="class#3512:4272" expanded="false" />
+            <element signature="method#actionPerformed#0;class#3512:4272" expanded="false" />
+            <element signature="class#4432:4625" expanded="false" />
+            <element signature="class#8634:9342" expanded="false" />
+            <element signature="method#actionPerformed#0;class#8634:9342" expanded="false" />
+            <element signature="class#9490:9663" expanded="false" />
+            <element signature="e#12527#12580#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -813,13 +969,15 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />
-            <element signature="class#3554:4314" expanded="false" />
-            <element signature="method#actionPerformed#0;class#3554:4314" expanded="false" />
-            <element signature="class#4474:4667" expanded="false" />
-            <element signature="class#8714:9422" expanded="false" />
-            <element signature="method#actionPerformed#0;class#8714:9422" expanded="false" />
-            <element signature="class#9570:9743" expanded="false" />
-            <element signature="e#12607#12660#0" expanded="false" />
+            <element signature="e#1264#1265#0" expanded="true" />
+            <element signature="e#1290#1291#0" expanded="true" />
+            <element signature="class#3512:4272" expanded="false" />
+            <element signature="method#actionPerformed#0;class#3512:4272" expanded="false" />
+            <element signature="class#4432:4625" expanded="false" />
+            <element signature="class#8634:9342" expanded="false" />
+            <element signature="method#actionPerformed#0;class#8634:9342" expanded="false" />
+            <element signature="class#9490:9663" expanded="false" />
+            <element signature="e#12527#12580#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -888,21 +1046,112 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Java/MinesweeperBoard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="40" column="10" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+        <state relative-caret-position="240">
+          <caret line="28" column="29" lean-forward="true" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#MinesweeperBoard#0" expanded="false" />
-            <element signature="class#3554:4314" expanded="false" />
-            <element signature="method#actionPerformed#0;class#3554:4314" expanded="false" />
-            <element signature="class#4474:4667" expanded="false" />
-            <element signature="class#8714:9422" expanded="false" />
-            <element signature="method#actionPerformed#0;class#8714:9422" expanded="false" />
-            <element signature="class#9570:9743" expanded="false" />
-            <element signature="e#12607#12660#0" expanded="false" />
+            <element signature="e#1264#1265#0" expanded="true" />
+            <element signature="e#1290#1291#0" expanded="true" />
+            <element signature="class#3512:4272" expanded="false" />
+            <element signature="method#actionPerformed#0;class#3512:4272" expanded="false" />
+            <element signature="class#4432:4625" expanded="false" />
+            <element signature="class#8634:9342" expanded="false" />
+            <element signature="method#actionPerformed#0;class#8634:9342" expanded="false" />
+            <element signature="class#9490:9663" expanded="false" />
+            <element signature="e#12527#12580#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>MinesweeperBoard:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>MinesweeperBoard</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
