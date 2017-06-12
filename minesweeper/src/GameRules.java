@@ -219,7 +219,7 @@ public class GameRules {
             visitedBoard[x][y] = 1;
             revealAroundZero(guiBoard, board, visitedBoard, x, y, numUnderTile, colNum);
         }
-        guiBoard[x][y].setIcon(new ImageIcon(new ImageIcon("src/Resources/" + numUnderTile + "_icon.png").getImage().getScaledInstance(44,38, Image.SCALE_SMOOTH), "touched"));
+        guiBoard[x][y].setIcon(new ImageIcon(new ImageIcon(MinesweeperBoard.class.getResource("" + numUnderTile + "_icon.png")).getImage().getScaledInstance(44,38, Image.SCALE_SMOOTH), "touched"));
     }
 
     /*

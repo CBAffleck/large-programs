@@ -33,11 +33,11 @@ public class gameRulesTest extends GameRules{
         int colSize = 8;
         int rowSize = 8;
 
-        checkLessThan(mineGenerator(colSize, rowSize), 64,"mineGenerator()");
-        checkLessThan(mineGenerator(colSize, rowSize), 64,"mineGenerator()");
-        checkLessThan(mineGenerator(colSize, rowSize), 64,"mineGenerator()");
-        checkLessThan(mineGenerator(colSize, rowSize), 64,"mineGenerator()");
-        checkLessThan(mineGenerator(colSize, rowSize), 64,"mineGenerator()");
+        checkLessThan(GameRules.mineGenerator(colSize, rowSize), 64,"mineGenerator()");
+        checkLessThan(GameRules.mineGenerator(colSize, rowSize), 64,"mineGenerator()");
+        checkLessThan(GameRules.mineGenerator(colSize, rowSize), 64,"mineGenerator()");
+        checkLessThan(GameRules.mineGenerator(colSize, rowSize), 64,"mineGenerator()");
+        checkLessThan(GameRules.mineGenerator(colSize, rowSize), 64,"mineGenerator()");
 
     }
 
@@ -49,8 +49,8 @@ public class gameRulesTest extends GameRules{
      *  @param  label               Label for the 'test' case
      */
     private static int[][] checkPlaceMines(int xPosUserClick, int yPosUserClick, int colSize, int rowSize, String label) {
-        mineGenerator(colSize, rowSize);
-        int [][] board = placeMines(colSize, rowSize, xPosUserClick, yPosUserClick);
+        GameRules.mineGenerator(colSize, rowSize);
+        int [][] board = GameRules.placeMines(colSize, rowSize, xPosUserClick, yPosUserClick);
         //*** Print out board to view mine placement ***
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
@@ -126,9 +126,9 @@ public class gameRulesTest extends GameRules{
                 {9, 9, 9, 9, 9, 9, 9, 9}
         };
 
-        checkPrintBoard(fillBoard(board), "board");
-        checkPrintBoard(fillBoard(board1), "board1");
-        checkPrintBoard(fillBoard(board2), "board2");
-        checkPrintBoard(fillBoard(checkPlaceMines(5, 7, 16, 16, "placeMines()")), "board3");
+        checkPrintBoard(GameRules.fillBoard(board), "board");
+        checkPrintBoard(GameRules.fillBoard(board1), "board1");
+        checkPrintBoard(GameRules.fillBoard(board2), "board2");
+        checkPrintBoard(GameRules.fillBoard(checkPlaceMines(5, 7, 16, 16, "placeMines()")), "board3");
     }
 }
