@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/MinesweeperBoard_jar</output-path>
     <root id="archive" name="MinesweeperBoard.jar">
       <element id="module-output" name="MinesweeperBoard" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src/Resources" />
     </root>
   </artifact>
 </component>

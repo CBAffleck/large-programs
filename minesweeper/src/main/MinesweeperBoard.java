@@ -86,7 +86,7 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
                     public void actionPerformed(ActionEvent e) {
                         for (int i = 0; i < boardTiles.length; i++) {
                             for (int j = 0; j < boardTiles[i].length; j++) {
-                                boardTiles[j][i].setIcon(new ImageIcon(new ImageIcon("Resources/untouched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "background"));
+                                boardTiles[j][i].setIcon(new ImageIcon(new ImageIcon("src/Resources/untouched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "background"));
                                 boardTiles[j][i].setEnabled(true);
                             }
                         }
@@ -120,7 +120,7 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
             } else if (boardTiles[x][y].isEnabled() && flagCount != 0) { //If untouched, change icon to flag, letting the user remember the mine location
                 numUntouched -= 1;
                 boardTiles[x][y].setEnabled(false); //Disabled icon is the flag
-                boardTiles[x][y].setDisabledIcon(new ImageIcon(new ImageIcon("Resources/flagged_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "flagged"));
+                boardTiles[x][y].setDisabledIcon(new ImageIcon(new ImageIcon("src/Resources/flagged_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "flagged"));
                 flagCount -= 1;
                 numFlags.setText("Flags left: " + flagCount);
             } else if (boardTiles[x][y].isEnabled()) { //If untouched, and no flags remain, do nothing when right-clicked.
@@ -128,7 +128,7 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
             } else {
                 numUntouched += 1;
                 boardTiles[x][y].setEnabled(true); //If the icon is a flag, this unflags the icon.
-                boardTiles[x][y].setIcon(new ImageIcon(new ImageIcon("Resources/untouched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "background"));
+                boardTiles[x][y].setIcon(new ImageIcon(new ImageIcon("src/Resources/untouched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "background"));
                 flagCount += 1;
                 numFlags.setText("Flags left: " + flagCount);
             }
@@ -154,7 +154,7 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
         if (numBoard[xPosUserClick][yPosUserClick] == 0) {
             revealAroundZero(guiBoard, numBoard, visitedBoard, xPosUserClick, yPosUserClick, numUnderTile, colSize);
         } else if (numBoard[xPosUserClick][yPosUserClick] == 9) {
-            guiBoard[xPosUserClick][yPosUserClick].setIcon(new ImageIcon(new ImageIcon("Resources/" + numUnderTile + "_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "touched"));
+            guiBoard[xPosUserClick][yPosUserClick].setIcon(new ImageIcon(new ImageIcon("src/Resources/" + numUnderTile + "_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "touched"));
             long totalTime = timePassed();
             JFrame winWindow = new JFrame();
             winWindow.setSize(new Dimension(200, 200));
@@ -173,7 +173,7 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
                 public void actionPerformed(ActionEvent e) {
                     for (int i = 0; i < boardTiles.length; i++) {
                         for (int j = 0; j < boardTiles[i].length; j++) {
-                            boardTiles[j][i].setIcon(new ImageIcon(new ImageIcon("Resources/untouched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "background"));
+                            boardTiles[j][i].setIcon(new ImageIcon(new ImageIcon("src/Resources/untouched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "background"));
                             boardTiles[j][i].setEnabled(true);
                         }
                     }
@@ -193,7 +193,7 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
             winWindow.getContentPane().add(quit);
             winWindow.setVisible(true);
         } else {
-            guiBoard[xPosUserClick][yPosUserClick].setIcon(new ImageIcon(new ImageIcon("Resources/" + numUnderTile + "_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "touched"));
+            guiBoard[xPosUserClick][yPosUserClick].setIcon(new ImageIcon(new ImageIcon("src/Resources/" + numUnderTile + "_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "touched"));
         }
     }
 
@@ -238,7 +238,7 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
                 JButton tile = new JButton();
                 tile.setMargin(buttonMargin);
                 tile.setEnabled(true); //sets default, untouched tile as "enabled"
-                tile.setIcon(new ImageIcon(new ImageIcon("Resources/untouched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "background"));
+                tile.setIcon(new ImageIcon(new ImageIcon("src/Resources/untouched_icon.png").getImage().getScaledInstance(44,38,Image.SCALE_SMOOTH), "background"));
                 tile.setBackground(Color.decode("#74d1fc"));
                 tile.addMouseListener(this); //adds mouseListener to the JButton tile
                 boardTiles[j][i] = tile;
@@ -266,7 +266,7 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
 //                JLabel notes = new JLabel("Press 'N' to start a new game. Good luck!");
 //                notes.setFont(new Font("Arial", Font.PLAIN, 12));
 //                instructions.add(notes);
-//                JOptionPane.showMessageDialog(null, instructions, "Minesweeper", JOptionPane.PLAIN_MESSAGE, new ImageIcon("Resources/9_icon.png"));
+//                JOptionPane.showMessageDialog(null, instructions, "Minesweeper", JOptionPane.PLAIN_MESSAGE, new ImageIcon("src/Resources/9_icon.png"));
                 JFrame frame = new JFrame("Minesweeper");
                 frame.add(msb.getGui());
                 frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
