@@ -6,26 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b2f5519-51d3-4dc5-8e90-33d462fca8c7" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Resources/0_icon.png" afterPath="$PROJECT_DIR$/Resources/0_icon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Resources/1_icon.png" afterPath="$PROJECT_DIR$/Resources/1_icon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Resources/2_icon.png" afterPath="$PROJECT_DIR$/Resources/2_icon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Resources/3_icon.png" afterPath="$PROJECT_DIR$/Resources/3_icon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Resources/4_icon.png" afterPath="$PROJECT_DIR$/Resources/4_icon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Resources/5_icon.png" afterPath="$PROJECT_DIR$/Resources/5_icon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Resources/6_icon.png" afterPath="$PROJECT_DIR$/Resources/6_icon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Resources/7_icon.png" afterPath="$PROJECT_DIR$/Resources/7_icon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Resources/8_icon.png" afterPath="$PROJECT_DIR$/Resources/8_icon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Resources/9_icon.png" afterPath="$PROJECT_DIR$/Resources/9_icon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Resources/flagged_icon.png" afterPath="$PROJECT_DIR$/Resources/flagged_icon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Resources/untouched_icon.png" afterPath="$PROJECT_DIR$/Resources/untouched_icon.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Test/gameRulesTest.java" afterPath="$PROJECT_DIR$/Test/gameRulesTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/GameRules.java" afterPath="$PROJECT_DIR$/src/GameRules.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/MinesweeperBoard.java" afterPath="$PROJECT_DIR$/src/MinesweeperBoard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/MinesweeperBoard_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/MinesweeperBoard_jar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MinesweeperBoard.iml" afterPath="$PROJECT_DIR$/MinesweeperBoard.iml" />
-    </list>
+    <list default="true" id="9b2f5519-51d3-4dc5-8e90-33d462fca8c7" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,7 +27,7 @@
       <file leaf-file-name="MinesweeperBoard.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MinesweeperBoard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
+            <state relative-caret-position="2565">
               <caret line="195" column="154" lean-forward="false" selection-start-line="195" selection-start-column="154" selection-end-line="195" selection-end-column="154" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -650,12 +631,12 @@
       <workItem from="1496462373334" duration="2616000" />
       <workItem from="1496513307808" duration="1141000" />
       <workItem from="1496528956990" duration="574000" />
-      <workItem from="1497290154005" duration="2510000" />
+      <workItem from="1497290154005" duration="3668000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93542000" />
+    <option name="totallyTimeSpent" value="94700000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="830" extended-state="6" />
@@ -951,7 +932,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MinesweeperBoard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
+        <state relative-caret-position="2565">
           <caret line="195" column="154" lean-forward="false" selection-start-line="195" selection-start-column="154" selection-end-line="195" selection-end-column="154" />
           <folding>
             <element signature="imports" expanded="true" />
