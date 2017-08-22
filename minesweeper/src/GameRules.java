@@ -16,7 +16,7 @@ public class GameRules {
      */
 
     public static int mineGenerator(int colSize, int rowSize) {
-        int randCol = rand.nextInt(colSize - 4) + 2;
+        int randCol = rand.nextInt(colSize - 4) + 2; //Used these numbers so that there aren't too many mines on the board
         int randRow = rand.nextInt(rowSize - 4) + 2;
         numMines = randCol*randRow;
         return numMines;

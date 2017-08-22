@@ -70,7 +70,7 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
             x = ((JButton) e.getSource()).getY()/42; //Gets y index of tile
         }
         if (e.getButton() == MouseEvent.BUTTON1) { //Checks if user left-clicks
-            System.out.println("(" + x + ", " + y + ")"); //Print out coordinate of clicked tile
+            //System.out.println("(" + x + ", " + y + ")"); //Print out coordinate of clicked tile
             if (!isGameStarted) { //If the user clicks a tile, the game starts
                 numUntouched -= 1;
                 isGameStarted = true;
