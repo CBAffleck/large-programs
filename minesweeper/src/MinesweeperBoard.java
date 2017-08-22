@@ -59,7 +59,10 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
     public void mouseReleased(MouseEvent e) {
         int x;
         int y;
-        if (boardSize == 16) { //The numbers that the getX/Y values are being divided by account for the gaps between the JButtons in the grid, so that we can accurately find the x,y coordinates of each tile
+        if (boardSize == 24) { //The numbers that the getX/Y values are being divided by account for the gaps between the JButtons in the grid, so that we can accurately find the x,y coordinates of each tile
+            y = ((JButton) e.getSource()).getX()/40; //Gets x index of tile
+            x = ((JButton) e.getSource()).getY()/26; //Gets y index of tile
+        } else if (boardSize == 16) { //The numbers that the getX/Y values are being divided by account for the gaps between the JButtons in the grid, so that we can accurately find the x,y coordinates of each tile
             y = ((JButton) e.getSource()).getX()/48; //Gets x index of tile
             x = ((JButton) e.getSource()).getY()/46; //Gets y index of tile
         } else {
@@ -222,7 +225,10 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
     }
 
     private void startGui() {
-        if (boardSize == 16) {
+        if (boardSize == 24) {
+            iconWidth = 38;
+            iconHeight = 24;
+        } else if (boardSize == 16) {
             iconWidth = 45;
             iconHeight = 42;
         } else {
@@ -261,7 +267,9 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
                 JButton tile = new JButton();
                 tile.setMargin(buttonMargin);
                 tile.setEnabled(true); //sets default, untouched tile as "enabled"
-                if (boardSize == 16) {
+                if (boardSize == 24) {
+                    tile.setIcon(new ImageIcon(new ImageIcon(MinesweeperBoard.class.getResource("untouched_icon.png")).getImage().getScaledInstance(iconWidth,iconHeight,Image.SCALE_SMOOTH), "background"));
+                } else if (boardSize == 16) {
                     tile.setIcon(new ImageIcon(new ImageIcon(MinesweeperBoard.class.getResource("untouched_icon.png")).getImage().getScaledInstance(iconWidth,iconHeight,Image.SCALE_SMOOTH), "background"));
                 } else {
                     tile.setIcon(new ImageIcon(new ImageIcon(MinesweeperBoard.class.getResource("untouched_icon.png")).getImage().getScaledInstance(iconWidth,iconHeight,Image.SCALE_SMOOTH), "background"));
@@ -289,12 +297,12 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
             @Override
             public void run() {
                 JPanel menu = new JPanel();
-                Object[] options = {"16x16 Grid", "8x8 Grid"};
-                int n = JOptionPane.showOptionDialog(menu, "Choose what size board to play on: ", "Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon("9_icon.png"), options, options[1]);
-                if (n == JOptionPane.YES_OPTION) {
+                Object[] options = {"24x24 Grid", "16x16 Grid", "8x8 Grid"};
+                int n = JOptionPane.showOptionDialog(menu, "Choose what size board to play on: ", "Menu", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, new ImageIcon("9_icon.png"), options, options[2]);
+                if (n == 0) {
+                    boardSize = 24;
+                } else if (n == 1) {
                     boardSize = 16;
-                } else if (n == JOptionPane.NO_OPTION) {
-                    boardSize = 8;
                 } else {
                     boardSize = 8;
                 }
@@ -306,10 +314,12 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
                 frame.add(msb.getGui());
                 frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
                 frame.setLocationByPlatform(true);
-                if (boardSize == 8) {
-                    frame.setSize(400,400);
-                } else {
+                if (boardSize == 24) {
+                    frame.setSize(1000,700);
+                } else if (boardSize == 16) {
                     frame.setSize(800,800);
+                } else {
+                    frame.setSize(400,400);
                 }
                 frame.setMinimumSize(frame.getSize()); //User can't change window size when the min and max are the same
                 //frame.setMaximumSize(frame.getSize());
