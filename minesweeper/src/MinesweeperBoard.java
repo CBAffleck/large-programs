@@ -297,8 +297,8 @@ public class MinesweeperBoard extends GameRules implements MouseListener {
             @Override
             public void run() {
                 JPanel menu = new JPanel();
-                Object[] options = {"24x24 Grid", "16x16 Grid", "8x8 Grid"};
-                int n = JOptionPane.showOptionDialog(menu, "Choose what size board to play on: ", "Menu", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, new ImageIcon("9_icon.png"), options, options[2]);
+                Object[] options = {"Expert", "Intermediate", "Beginner"};
+                int n = JOptionPane.showOptionDialog(menu, "Choose the difficulty you want to play at: ", "Menu", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, new ImageIcon("9_icon.png"), options, options[2]);
                 if (n == 0) {
                     boardSize = 24;
                 } else if (n == 1) {
