@@ -1,8 +1,15 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'search/main.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'search/index.css' %}" />
 
-<h3>Movie and TV Show Search</h3>
-<form action="search_results/" method="get" style="margin: 0">
-    <input  id="search_box" type="text" name="search_box"  placeholder="Search" >
-    <button id="search_submit" type="submit" >Submit</button>
-</form>
+<body>
+	<div class="main">
+		<div class="fixer">
+			<h3 class="float">Movie and TV Show Search</h3>
+			<form action="search_results/" method="get" style="margin: 0">
+			    <input  id="search_box" type="text" name="search_box"  placeholder="Search" >
+			    <button id="search_submit" type="submit" >Submit</button>
+			</form>
+		</div>
+	</div>
+</body>

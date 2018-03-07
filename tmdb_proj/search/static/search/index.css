@@ -1,0 +1,11 @@
+.main {
+	float: left;
+	position: relative;
+	left: 50%;
+}
+
+.fixer {
+	float: left;
+	position: relative;
+	left: -50%;
+}

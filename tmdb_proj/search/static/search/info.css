@@ -15,7 +15,11 @@ div.back-button {
 }
 
 ul.outer {
-	list-style-type: none;
+	list-style-type: circle;
+}
+
+li {
+	list-style-type: circle;
 }
 
 a {
