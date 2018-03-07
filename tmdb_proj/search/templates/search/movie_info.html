@@ -1,0 +1,15 @@
+<h3>Movie Info for {{ movie_info.4 }}</h3>
+{% csrf_token %}
+
+<ul>
+	<div>
+		<li>Summary: {{ movie_info.0 }}
+		<li>Release Date: {{ movie_info.1 }}</li>
+		<li>Genres: {{ movie_info.2 }}</li>
+		<li>Runtime: {{ movie_info.3 }}</li>
+		</li>
+	</div>
+	<br>
+</ul>
+
+<div class="back-button"><a href="{% url 'search:index' %}">Search for another movie or tv show</a></div>

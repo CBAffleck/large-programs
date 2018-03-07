@@ -1,0 +1,16 @@
+<h3>TV Show Info for {{ tv_show_info.0 }}</h3>
+{% csrf_token %}
+
+<ul>
+	<div>
+		<li>Summary: {{ tv_show_info.1 }}
+		<li>First Time on Air: {{ tv_show_info.2 }}</li>
+		<li>Number of Seasons: {{ tv_show_info.3 }}</li>
+		<li>Number of Episodes: {{ tv_show_info.4 }}</li>
+		<li>Current Status: {{ tv_show_info.5 }}</li>
+		</li>
+	</div>
+	<br>
+</ul>
+
+<div class="back-button"><a href="{% url 'search:index' %}">Search for another movie or tv show</a></div>
