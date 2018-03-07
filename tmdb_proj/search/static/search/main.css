@@ -1,0 +1,20 @@
+@font-face {
+	font-family: 'Din';
+	src: url('fonts/DIN-Regular.otf') format("opentype");
+}
+
+@font-face {
+	font-family: 'Din';
+	font-weight: bold;
+	src: url('fonts/DINBold.otf') format("opentype");
+}
+
+@font-face {
+	font-family: 'Din';
+	font-style: italic;
+	src: url('fonts/DIN-RegularItalic.otf') format("opentype");
+}
+
+* {
+	font-family: 'Din';
+}

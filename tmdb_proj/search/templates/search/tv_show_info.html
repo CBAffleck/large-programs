@@ -1,3 +1,6 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'search/main.css' %}" />
+
 <h3>TV Show Info for {{ tv_show_info.0 }}</h3>
 {% csrf_token %}
 
