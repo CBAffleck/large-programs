@@ -27,7 +27,7 @@ def get_movie_title_id_dict(movie_title):
 	dict = response.json()
 
 	results = dict['results']
-	titles = [[d['title'], d['id'], d['release_date'], d['overview']] for d in results if d['title'].find(movie_title) == 0]
+	titles = [[d['title'], d['id'], d['release_date'], d['overview'], d['poster_path']] for d in results if d['title'].find(movie_title) == 0]
 	return titles
 
 #Takes the title the user put in and looks it up. If there's more than one tv show with that title, then the user
@@ -39,7 +39,7 @@ def get_tv_show_title_id(tv_show_title):
 	dict = response.json()
 
 	results = dict['results']
-	titles = [[d['name'], d['id'], d['first_air_date'], d['overview']] for d in results]
+	titles = [[d['name'], d['id'], d['first_air_date'], d['overview'], d['poster_path']] for d in results]
 	return titles
 
 def movie_info(request, movie_id):

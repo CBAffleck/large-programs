@@ -1,0 +1,53 @@
+
+div.results {
+	overflow: hidden;
+	width: 100%;
+}
+
+img {
+	float: left;
+	margin-right: 2em;
+	border-radius: 10px;
+}
+
+div li {
+	list-style-position: outside;
+}
+
+div ul {
+	padding-left: 1.2em;
+	overflow: hidden;
+}
+
+div.list {
+	background-color: #b3f0ff;
+	padding: 10px;
+	border-radius: 10px;
+	overflow: hidden;
+	/*width: 45%;*/
+	/*float: left;*/
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+div.back-button {
+	background-color: #ff9696;
+	padding: 5px;
+	display: inline-block;
+	border-radius: 10px;
+}
+
+ul.outer {
+	list-style-type: none;
+	padding-bottom: 100%;
+	margin-bottom: -100%;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	color: grey;
+}
