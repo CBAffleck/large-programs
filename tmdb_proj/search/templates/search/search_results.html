@@ -1,0 +1,16 @@
+<header>Search Results</header>
+{% csrf_token %}
+
+{% if context %}
+	<ul>
+	{% for movie in context %}
+		<li>{{ movie }}</li>
+	{% endfor %}
+	</ul>
+{% else %}
+	<p>No movies were found.</p>
+{% endif %}
+
+<ul>
+	<li>"{{ context }}"</li>
+</ul>
