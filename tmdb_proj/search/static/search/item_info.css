@@ -2,9 +2,17 @@ div {
 	background-color: #b3f0ff;
 }
 
-div.list {
-	padding: 10px;
+div.result {
 	border-radius: 10px;
+	overflow: hidden;
+	width: 100%;
+}
+
+div.list {
+	border-radius: 10px;
+	overflow: hidden;
+	width: 100%;
+	margin-bottom: 20px;
 }
 
 div.back-button {
@@ -14,12 +22,25 @@ div.back-button {
 	border-radius: 10px;
 }
 
+img {
+	float: left;
+	margin-right: 2em;
+	border-radius: 10px;
+}
+
 ul.outer {
 	list-style-type: circle;
+	padding-bottom: 100%;
+	margin-bottom: -100%;
 }
 
 li {
 	list-style-type: circle;
+}
+
+ul > li {
+	margin-left: 10px;
+	list-style-type: none;
 }
 
 a {

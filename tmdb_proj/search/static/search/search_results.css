@@ -1,4 +1,3 @@
-
 div.results {
 	overflow: hidden;
 	width: 100%;
@@ -24,8 +23,6 @@ div.list {
 	padding: 10px;
 	border-radius: 10px;
 	overflow: hidden;
-	/*width: 45%;*/
-	/*float: left;*/
 	margin-right: 20px;
 	margin-bottom: 20px;
 }
@@ -41,6 +38,10 @@ ul.outer {
 	list-style-type: none;
 	padding-bottom: 100%;
 	margin-bottom: -100%;
+}
+
+li.main_title {
+	font-weight: bold;
 }
 
 a {

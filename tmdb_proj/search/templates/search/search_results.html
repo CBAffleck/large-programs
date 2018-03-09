@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'search/main.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'search/results.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'search/search_results.css' %}" />
 
 <body>
 
@@ -15,7 +15,7 @@
 			<a href="{% url 'search:movie_info' movie.1 %}">
 				<div class="list">
 					<img src="http://image.tmdb.org/t/p/w154//{{ movie.4 }}" alt="movie poster">
-					<li>{{ movie.0 }}</li>
+					<li class="main_title">{{ movie.0 }}</li>
 					<ul>
 						<li>Release Date: {{ movie.2 }}</li>
 						<li>Summary: {{ movie.3 }}</li>
@@ -35,7 +35,7 @@
 			<a href="{% url 'search:tv_show_info' show.1 %}">
 				<div class="list">
 					<img src="http://image.tmdb.org/t/p/w154//{{ show.4 }}" alt="tv poster">
-					<li>{{ show.0 }}</li>
+					<li class="main_title">{{ show.0 }}</li>
 					<ul>
 						<li>First Time on Air: {{ show.2 }}</li>
 						<li>Summary: {{ show.3 }}</li>

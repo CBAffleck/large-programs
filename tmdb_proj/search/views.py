@@ -58,7 +58,7 @@ def get_movie_info(movie_id):
 	response = requests.get(url)
 	dict = response.json()
 
-	results = [dict['overview'], dict['release_date'], dict['genres'], dict['runtime'], dict['title']]
+	results = [dict['overview'], dict['release_date'], dict['genres'], dict['runtime'], dict['title'], dict['poster_path']]
 	return results
 
 #Gets the tv show's info based on the id
@@ -67,7 +67,7 @@ def get_tv_show_info(tv_show_id):
 	response = requests.get(url)
 	dict = response.json()
 
-	results = [dict['name'], dict['overview'], dict['first_air_date'], dict['number_of_seasons'], dict['number_of_episodes'], dict['status']]
+	results = [dict['name'], dict['overview'], dict['first_air_date'], dict['number_of_seasons'], dict['number_of_episodes'], dict['status'], dict['poster_path']]
 	return results
 
 

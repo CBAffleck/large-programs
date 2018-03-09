@@ -1,18 +1,21 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'search/main.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'search/info.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'search/item_info.css' %}" />
 
 <body>
 	<h3>TV Show Info for {{ tv_show_info.0 }}</h3>
 	{% csrf_token %}
 
-	<div class="list">
+	<div class="result">
 		<ul class="outer">
-			<li>Summary: {{ tv_show_info.1 }}</li>
-			<li>First Time on Air: {{ tv_show_info.2 }}</li>
-			<li>Number of Seasons: {{ tv_show_info.3 }}</li>
-			<li>Number of Episodes: {{ tv_show_info.4 }}</li>
-			<li>Current Status: {{ tv_show_info.5 }}</li>
+			<div class="list">
+				<img src="http://image.tmdb.org/t/p/w154//{{ tv_show_info.6 }}" alt="tv show poster">
+				<li>Summary: {{ tv_show_info.1 }}</li>
+				<li>First Time on Air: {{ tv_show_info.2 }}</li>
+				<li>Number of Seasons: {{ tv_show_info.3 }}</li>
+				<li>Number of Episodes: {{ tv_show_info.4 }}</li>
+				<li>Current Status: {{ tv_show_info.5 }}</li>
+			</div>
 		</ul>
 	</div>
 	<br>
