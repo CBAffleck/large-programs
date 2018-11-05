@@ -105,12 +105,13 @@ class BasicServer(object):
                             msg_start = msg.index("]")
                         clientUserName = msg[1:msg_start - 2]
                         destination = sock.getpeername()
-                        print destination
+                        # Replace the port in the namelist with the client's username
                         if destination[1] in name_list:
                             i = name_list.index(destination[1])
                             name_list[i] = clientUserName
-                        print name_list
+                        # Deal with different server commands
                         if msg[msg_start] == "/":
+                            # List all channels that are currently available to join
                             if msg[msg_start:msg_start + 5] == "/list":
                                 client_wipe = utils.CLIENT_WIPE_ME
                                 lst = client_wipe + "\r"
@@ -123,16 +124,17 @@ class BasicServer(object):
                                     sys.stdout.flush()
                                     pass
 
+                            # Try to create a channel with the specified channel name
                             elif msg[msg_start:msg_start + 7] == "/create":
-                                channel_list = []
-                                for i in msg[msg_start + 8:]:
-                                    if i != " ":
-                                        channel_list.append(i)
-                                channelName = ''.join(channel_list)
-                                if channelName == "":
-                                    self.sendToSelf("\r" + utils.SERVER_CREATE_REQUIRES_ARGUMENT, sock)
+                                channel_list = msg[msg_start + 8:].split()
+                                if len(channel_list) > 1 or len(channel_list) == 0:
+                                    self.sendToSelf("\r" + utils.SERVER_CREATE_MANY_ARGUMENTS, sock)
                                 else:
-                                    self.createChannel(channelName, clientUserName, sock)
+                                    channelName = channel_list[0]
+                                    if channelName == "":
+                                        self.sendToSelf("\r" + utils.SERVER_CREATE_REQUIRES_ARGUMENT, sock)
+                                    else:
+                                        self.createChannel(channelName, clientUserName, sock)
 
                             elif msg[msg_start:msg_start + 5] == "/join":
                                 channel_list = []
