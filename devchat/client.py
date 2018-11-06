@@ -13,6 +13,8 @@ class BasicClient(object):
 
 	def connect(self):
 		self.socket.connect((self.address, self.port))
+		sys.stdout.write(utils.SERVER_WELCOME)
+		sys.stdout.flush()
 		sys.stdout.write("[Me] ")
 		sys.stdout.flush()
 		while True:

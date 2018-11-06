@@ -64,5 +64,8 @@ SERVER_CHANNEL_PASS_FALSE = "The password you've entered for channel {0} is inco
 # Message sent to a client if the client is already in the channel they're trying to join.
 SERVER_CHANNEL_CURRENT = "You are already in channel {0}."
 
+# Message sent to a client when the client first joins the server.
+SERVER_WELCOME = "Welcome to DevChat! \n"
+
 
 
