@@ -31,6 +31,9 @@ SERVER_NO_CHANNEL_EXISTS = "No channel named {0} exists. Try '/create {0}'?"
 # Message sent to a client that uses the "/join" command without a channel name.
 SERVER_JOIN_REQUIRES_ARGUMENT = "/join command must be followed by the name of a channel to join."
 
+# Message sent to a client that uses the "/join" command with multiple channel names.
+SERVER_JOIN_MANY_ARGUMENTS = "/join command must be followed by the name of exactly one channel to join."
+
 # Message sent to all clients in a channel when a new client joins.
 SERVER_CLIENT_JOINED_CHANNEL = "{0} has joined"
 

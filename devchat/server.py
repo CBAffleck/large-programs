@@ -127,32 +127,30 @@ class BasicServer(object):
                             # Try to create a channel with the specified channel name
                             elif msg[msg_start:msg_start + 7] == "/create":
                                 channel_list = msg[msg_start + 8:].split()
-                                if len(channel_list) > 1 or len(channel_list) == 0:
+                                length = len(channel_list)
+                                if length > 1:
                                     self.sendToSelf("\r" + utils.SERVER_CREATE_MANY_ARGUMENTS, sock)
+                                elif length == 0:
+                                    self.sendToSelf("\r" + utils.SERVER_CREATE_REQUIRES_ARGUMENT, sock)
                                 else:
                                     channelName = channel_list[0]
-                                    if channelName == "":
-                                        self.sendToSelf("\r" + utils.SERVER_CREATE_REQUIRES_ARGUMENT, sock)
-                                    else:
-                                        self.createChannel(channelName, clientUserName, sock)
+                                    self.createChannel(channelName, clientUserName, sock)
 
+                            # Attempt to join channel
                             elif msg[msg_start:msg_start + 5] == "/join":
-                                channel_list = []
-                                for i in msg[msg_start + 6:]:
-                                    if i != " ":
-                                        channel_list.append(i)
-                                channelName = ''.join(channel_list)
-                                if channelName == "":
+                                channel_list = msg[msg_start + 6:].split()
+                                length = len(channel_list)
+                                if length > 1:
+                                    self.sendToSelf("\r" + utils.SERVER_JOIN_MANY_ARGUMENTS, sock)
+                                elif length == 0:
                                     self.sendToSelf("\r" + utils.SERVER_JOIN_REQUIRES_ARGUMENT, sock)
                                 else:
+                                    channelName = channel_list[0]
                                     self.joinChannel(channelName, clientUserName, sock)
 
+                            # Notify client that whatever control they're trying to use doesn't exist
                             else:
-                                control_list = []
-                                for i in msg[msg_start:]:
-                                    if i != " ":
-                                        control_list.append(i)
-                                control = ''.join(control_list)
+                                control = msg[msg_start:]
                                 error_msg = utils.SERVER_INVALID_CONTROL_MESSAGE.format(control)
                                 self.sendToSelf("\r" + error_msg, sock)
                         else:
