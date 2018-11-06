@@ -5,9 +5,6 @@ MESSAGE_LENGTH = 200
 # Message printed when a client can't connect to the server host and port that were passed in.
 CLIENT_CANNOT_CONNECT = "Unable to connect to {0}:{1}"
 
-# Message printed before exiting, if the server disconnected.
-CLIENT_SERVER_DISCONNECTED = "Server at {0}:{1} has disconnected"
-
 # Printed at the beginning of new lines in the client.
 CLIENT_MESSAGE_PREFIX = "[Me] "
 

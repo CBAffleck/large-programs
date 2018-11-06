@@ -54,7 +54,5 @@ client = BasicClient(args[1], args[2], args[3])
 try:
 	client.connect()
 except:
-	# disconnect_msg = utils.CLIENT_SERVER_DISCONNECTED.format(client.address, client.port)
-	# print disconnect_msg
 	error_msg = utils.CLIENT_CANNOT_CONNECT.format(client.address, client.port)
 	raise RuntimeError(error_msg)
