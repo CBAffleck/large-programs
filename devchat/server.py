@@ -20,41 +20,58 @@ class BasicServer(object):
             for value in channels.itervalues():
                 if clientUserName in value:
                     leave_msg = utils.SERVER_CLIENT_LEFT_CHANNEL.format(clientUserName)
-                    self.sendToOthers("\r" + leave_msg, self.socket, sock)
+                    self.sendToOthers("\r" + leave_msg, self.socket, sock, clientUserName)
                     value.remove(clientUserName)
             channels[channelName] = [clientUserName]
+            self.sendToSelf("\r" + utils.SERVER_CHANNEL_JOINED.format(channelName), sock)
             sys.stdout.flush()
 
     ## Used to let the client join a pre-existing channel
-    def joinChannel(self, channelName, clientUserName, sock):
+    def joinChannel(self, channelName, clientUserName, sock, password):
+        # Check if channel already exists
+        current_channel = False
         if channelName in channels.keys():
-            for value in channels.itervalues():
+            for key, value in channels.iteritems():
+                # Removes client from channel they were previously in
                 if clientUserName in value:
-                    leave_msg = utils.SERVER_CLIENT_LEFT_CHANNEL.format(clientUserName)
-                    self.sendToOthers("\r" + leave_msg, self.socket, sock)
-                    value.remove(clientUserName)
-            channels[channelName].append(clientUserName)
-            join_msg = utils.SERVER_CLIENT_JOINED_CHANNEL.format(clientUserName)
-            self.sendToOthers("\r" + join_msg, self.socket, sock) # Announces to the new channel that this client has joined
-            sys.stdout.flush()
+                    # Check if the channel being joined is the channel the client is already in
+                    if key == channelName:
+                        current_channel = True
+                        break
+                    else:
+                        leave_msg = utils.SERVER_CLIENT_LEFT_CHANNEL.format(clientUserName)
+                        self.sendToOthers("\r" + leave_msg, self.socket, sock, clientUserName)
+                        value.remove(clientUserName)
+            access = True
+            if channelName in protected_channels:
+                # Make sure channel is not current channel, since in that case we don't need to rejoin
+                if password != protected_channels[channelName] and not current_channel:
+                    error_msg = utils.SERVER_CHANNEL_PASS_FALSE.format(channelName) # No channel with that name exists
+                    self.sendToSelf("\r" + error_msg, sock)
+                    access = False
+            # Tell client they're trying to join the channel they're currently in
+            if current_channel:
+                self.sendToSelf("\r" + utils.SERVER_CHANNEL_CURRENT.format(channelName), sock)
+                sys.stdout.flush()
+            # If we have access to the channel and it's a new channel, perform these actions
+            elif access == True:
+                channels[channelName].append(clientUserName)
+                join_msg = utils.SERVER_CLIENT_JOINED_CHANNEL.format(clientUserName)
+                self.sendToOthers("\r" + join_msg, self.socket, sock, clientUserName) # Announces to the new channel that this client has joined
+                self.sendToSelf("\r" + utils.SERVER_CHANNEL_JOINED.format(channelName), sock)
+                sys.stdout.flush()
         else:
             error_msg = utils.SERVER_NO_CHANNEL_EXISTS.format(channelName) # No channel with that name exists
             self.sendToSelf("\r" + error_msg, sock)
 
-    def sendToOthers(self, message, server_sock, sock):
+    def sendToOthers(self, message, server_sock, sock, username):
         # Catches exception where the user is not sending the message, and the server is sending a message
         # This includes the server letting others in a channel know that a new client has joined the channel
         if " " in message: # A space will always be in the message unless the client typed nothing, so they were all stripped off
-            try:
-                name_end = message.index("]")
-                clientUserName = message[2:name_end]
-            except ValueError:
-                name_end = message.index(" ")
-                clientUserName = message[1:name_end]
             # Checks if the client is already in a channel, and if not sends the client the "not in channel" error message 
             in_channel = False
             for value in channels.itervalues():
-                if clientUserName in value:
+                if username in value:
                     in_channel = True
                     for socket in clients.keys():
                         try:
@@ -62,7 +79,6 @@ class BasicServer(object):
                             if socket != server_sock and socket != sock and clients[socket] in value:
                                 try:
                                     socket.send(message)
-                                    print message
                                 except:
                                     socket.close()
                                     clients.pop(socket)
@@ -128,8 +144,13 @@ class BasicServer(object):
                             elif msg[msg_start:msg_start + 7] == "/create":
                                 channel_list = msg[msg_start + 8:].split()
                                 length = len(channel_list)
-                                if length > 1:
+                                if length > 2:
                                     self.sendToSelf("\r" + utils.SERVER_CREATE_MANY_ARGUMENTS, sock)
+                                elif length == 2:
+                                    channelName = channel_list[0]
+                                    if channelName not in channels.keys():
+                                        protected_channels[channelName] = channel_list[1]
+                                    self.createChannel(channelName, clientUserName, sock)
                                 elif length == 0:
                                     self.sendToSelf("\r" + utils.SERVER_CREATE_REQUIRES_ARGUMENT, sock)
                                 else:
@@ -140,13 +161,17 @@ class BasicServer(object):
                             elif msg[msg_start:msg_start + 5] == "/join":
                                 channel_list = msg[msg_start + 6:].split()
                                 length = len(channel_list)
-                                if length > 1:
+                                if length > 2:
                                     self.sendToSelf("\r" + utils.SERVER_JOIN_MANY_ARGUMENTS, sock)
+                                elif length == 2:
+                                    channelName = channel_list[0]
+                                    password = channel_list[1]
+                                    self.joinChannel(channelName, clientUserName, sock, password)
                                 elif length == 0:
                                     self.sendToSelf("\r" + utils.SERVER_JOIN_REQUIRES_ARGUMENT, sock)
                                 else:
                                     channelName = channel_list[0]
-                                    self.joinChannel(channelName, clientUserName, sock)
+                                    self.joinChannel(channelName, clientUserName, sock, 'None')
 
                             # Notify client that whatever control they're trying to use doesn't exist
                             else:
@@ -154,21 +179,24 @@ class BasicServer(object):
                                 error_msg = utils.SERVER_INVALID_CONTROL_MESSAGE.format(control)
                                 self.sendToSelf("\r" + error_msg, sock)
                         else:
-                            self.sendToOthers("\r" + msg, self.socket, sock)
+                            self.sendToOthers("\r" + msg, self.socket, sock, clientUserName)
                             sys.stdout.flush()
                     else:
                         if sock in clients:
-                            clients.pop(sock, 'None')
-                            leave_msg = utils.SERVER_CLIENT_LEFT_CHANNEL.format(clientUserName)
-                            self.sendToOthers("\r" + leave_msg, self.socket, sock)
-                            if clientUserName in channels:
-                                del channels[clientUserName]
+                            leaving = clients.pop(sock, 'None')
+                            leave_msg = utils.SERVER_CLIENT_LEFT_CHANNEL.format(leaving)
+                            self.sendToOthers("\r" + leave_msg, self.socket, sock, leaving)
+                            for value in channels.itervalues():
+                                if leaving in value:
+                                    value.remove(leaving)
+
     
 
 if len(args) != 2:
     print "Please supply a port."
     sys.exit()
 server = BasicServer(args[1])
+protected_channels = {} # Format = {'channel' : password}
 channels = {} # Format = {'channel' : ['name']}
 clients = {} # Format = {socket : 'name'}
 len_none = len(utils.CLIENT_WIPE_ME + "\r")

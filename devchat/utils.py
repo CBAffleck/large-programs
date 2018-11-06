@@ -45,12 +45,24 @@ SERVER_CHANNEL_EXISTS = "Room {0} already exists, so cannot be created."
 
 # Message sent to a client that uses the "/create" command without a channel name.
 SERVER_CREATE_REQUIRES_ARGUMENT = \
-  "/create command must be followed by the name of a channel to create"
+  "/create command must be followed by the name of a channel to create."
 
 # Message sent to a client that uses the "/create" command with multiple channel names.
 SERVER_CREATE_MANY_ARGUMENTS = \
-  "/create command must be followed by exactly one name of a channel to create"
+  "/create command must be followed by exactly one name of a channel to create."
 
 # Message sent to a client that sends a regular message before joining any channels.
 SERVER_CLIENT_NOT_IN_CHANNEL = \
   "Not currently in any channel. Must join a channel before sending messages."
+
+# Message sent to a client when they've joined a channel.
+SERVER_CHANNEL_JOINED = "You've joined the channel {0}."
+
+# Message sent to a client if the password for the channel being joined is wrong.
+SERVER_CHANNEL_PASS_FALSE = "The password you've entered for channel {0} is incorrect."
+
+# Message sent to a client if the client is already in the channel they're trying to join.
+SERVER_CHANNEL_CURRENT = "You are already in channel {0}."
+
+
+
