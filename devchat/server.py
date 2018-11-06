@@ -13,25 +13,27 @@ class BasicServer(object):
         self.socket.listen(5)
 
     def createChannel(self, channelName, clientUserName, sock):
-        if channelName in available_channels:
+        if channelName in channels.keys():
             error_msg = utils.SERVER_CHANNEL_EXISTS.format(channelName)
             self.sendToSelf("\r" + error_msg, sock)
         else:
-            available_channels.append(channelName)
-            if clientUserName in channels:
-                leave_msg = utils.SERVER_CLIENT_LEFT_CHANNEL.format(clientUserName)
-                self.sendToOthers("\r" + leave_msg, self.socket, sock)
-            channels[clientUserName] = channelName
+            for value in channels.itervalues():
+                if clientUserName in value:
+                    leave_msg = utils.SERVER_CLIENT_LEFT_CHANNEL.format(clientUserName)
+                    self.sendToOthers("\r" + leave_msg, self.socket, sock)
+                    value.remove(clientUserName)
+            channels[channelName] = [clientUserName]
             sys.stdout.flush()
 
     ## Used to let the client join a pre-existing channel
     def joinChannel(self, channelName, clientUserName, sock):
-        if channelName in available_channels:
-            if clientUserName in channels:
-                leave_msg = utils.SERVER_CLIENT_LEFT_CHANNEL.format(clientUserName)
-                self.sendToOthers("\r" + leave_msg, self.socket, sock) # Lets other clients know that this client is leaving
-                del channels[clientUserName]
-            channels[clientUserName] = channelName
+        if channelName in channels.keys():
+            for value in channels.itervalues():
+                if clientUserName in value:
+                    leave_msg = utils.SERVER_CLIENT_LEFT_CHANNEL.format(clientUserName)
+                    self.sendToOthers("\r" + leave_msg, self.socket, sock)
+                    value.remove(clientUserName)
+            channels[channelName].append(clientUserName)
             join_msg = utils.SERVER_CLIENT_JOINED_CHANNEL.format(clientUserName)
             self.sendToOthers("\r" + join_msg, self.socket, sock) # Announces to the new channel that this client has joined
             sys.stdout.flush()
@@ -50,20 +52,23 @@ class BasicServer(object):
                 name_end = message.index(" ")
                 clientUserName = message[1:name_end]
             # Checks if the client is already in a channel, and if not sends the client the "not in channel" error message 
-            if clientUserName in channels:
-                # Looks through sockets to send message to other sockets that aren't the socket of the client sending the message
-                for socket in clients.keys():
-                    try:
-                        if socket != server_sock and socket != sock and channels[clients[socket]] == channels[clientUserName]:
-                            try:
-                                socket.send(message)
-                                print message
-                            except:
-                                socket.close()
-                                clients.pop(socket)
-                    except KeyError: # passes over KeyError occurring when the name is an integer
-                        pass
-            else:
+            in_channel = False
+            for value in channels.itervalues():
+                if clientUserName in value:
+                    in_channel = True
+                    for socket in clients.keys():
+                        try:
+                            # Don't send message to server or self, but to all other clients in channel
+                            if socket != server_sock and socket != sock and clients[socket] in value:
+                                try:
+                                    socket.send(message)
+                                    print message
+                                except:
+                                    socket.close()
+                                    clients.pop(socket)
+                        except KeyError: # passes over KeyError occurring when the name is an integer
+                            pass
+            if not in_channel:
                 error_msg = utils.SERVER_CLIENT_NOT_IN_CHANNEL
                 self.sendToSelf("\r" + error_msg, sock)
         else:
@@ -110,7 +115,7 @@ class BasicServer(object):
                             if msg[msg_start:msg_start + 5] == "/list":
                                 client_wipe = utils.CLIENT_WIPE_ME
                                 lst = client_wipe + "\r"
-                                for i in available_channels:
+                                for i in channels.keys():
                                     lst += i + "\n"
                                 if len(lst) > len_none:
                                     self.sendToSelf(lst[:-1], sock)
@@ -164,8 +169,7 @@ if len(args) != 2:
     print "Please supply a port."
     sys.exit()
 server = BasicServer(args[1])
-available_channels = []
-channels = {}
+channels = {} # Format = {'channel' : ['name']}
 clients = {} # Format = {socket : 'name'}
 len_none = len(utils.CLIENT_WIPE_ME + "\r")
 server.start()
