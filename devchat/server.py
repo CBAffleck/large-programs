@@ -51,18 +51,17 @@ class BasicServer(object):
                 clientUserName = message[1:name_end]
             # Checks if the client is already in a channel, and if not sends the client the "not in channel" error message 
             if clientUserName in channels:
-                # Looks through SOCKET_LIST and name_list simultaneously to match the socket to a client name
-                for socket, name in zip(SOCKET_LIST, name_list): 
+                # Looks through sockets to send message to other sockets that aren't the socket of the client sending the message
+                for socket in clients.keys():
                     try:
-                        if socket != server_sock and socket != sock and channels[name] == channels[clientUserName]:
+                        if socket != server_sock and socket != sock and channels[clients[socket]] == channels[clientUserName]:
                             try:
                                 socket.send(message)
                                 print message
                             except:
                                 socket.close()
-                                if socket in SOCKET_LIST:
-                                    SOCKET_LIST.remove(socket)
-                    except KeyError: # passes over KeyError occurring when the name is an integer in name_list
+                                clients.pop(socket)
+                    except KeyError: # passes over KeyError occurring when the name is an integer
                         pass
             else:
                 error_msg = utils.SERVER_CLIENT_NOT_IN_CHANNEL
@@ -72,25 +71,22 @@ class BasicServer(object):
     
     ## Used by the server to send a message to a client trying to do something that isn't supported or that throws an error
     def sendToSelf(self, message, sock):
-        for socket in SOCKET_LIST:
+        for socket in clients.keys():
             if socket == sock:
                 try:
                     socket.send(message)
                 except:
                     socket.close()
-                    if socket in SOCKET_LIST:
-                        SOCKET_LIST.remove(socket)
+                    clients.pop(socket, 'None')
 
     def start(self):
-        SOCKET_LIST.append(self.socket)
-        name_list.append("server")
+        clients[self.socket] = "server"
         while True:
-            ready_to_read,ready_to_write,in_error = select.select(SOCKET_LIST,[],[],0)
+            ready_to_read,ready_to_write,in_error = select.select(clients.keys(),[],[],0)
             for sock in ready_to_read:
                 if sock == self.socket:
                     (new_socket, address) = self.socket.accept()
-                    SOCKET_LIST.append(new_socket)
-                    name_list.append(address[1])
+                    clients[new_socket] = address[1]
                 else:
                     msg = sock.recv(1024)
                     if msg:
@@ -106,9 +102,8 @@ class BasicServer(object):
                         clientUserName = msg[1:msg_start - 2]
                         destination = sock.getpeername()
                         # Replace the port in the namelist with the client's username
-                        if destination[1] in name_list:
-                            i = name_list.index(destination[1])
-                            name_list[i] = clientUserName
+                        if destination[1] in clients.values():
+                            clients[sock] = clientUserName
                         # Deal with different server commands
                         if msg[msg_start] == "/":
                             # List all channels that are currently available to join
@@ -157,20 +152,20 @@ class BasicServer(object):
                             self.sendToOthers("\r" + msg, self.socket, sock)
                             sys.stdout.flush()
                     else:
-                        if sock in SOCKET_LIST:
-                            SOCKET_LIST.remove(sock)
+                        if sock in clients:
+                            clients.pop(sock, 'None')
                             leave_msg = utils.SERVER_CLIENT_LEFT_CHANNEL.format(clientUserName)
                             self.sendToOthers("\r" + leave_msg, self.socket, sock)
-                            del channels[clientUserName]
+                            if clientUserName in channels:
+                                del channels[clientUserName]
     
 
 if len(args) != 2:
     print "Please supply a port."
     sys.exit()
 server = BasicServer(args[1])
-name_list = []
 available_channels = []
 channels = {}
-SOCKET_LIST = []
+clients = {} # Format = {socket : 'name'}
 len_none = len(utils.CLIENT_WIPE_ME + "\r")
 server.start()
