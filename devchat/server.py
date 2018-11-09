@@ -89,6 +89,17 @@ class BasicServer(object):
                 self.sendToSelf("\r" + error_msg, sock)
         else:
             pass
+
+    def sendWhisper(self, message, sock, username):
+        exists = False
+        for socket, name in channels.iteritems():
+            if name == username:
+                exists = True
+                socket.send(message)
+        if not exists:
+            error_msg = utils.SERVER_CLIENT_DOESNT_EXIST.format(username)
+            self.sendToSelf("\r" + error_msg, sock)
+
     
     ## Used by the server to send a message to a client trying to do something that isn't supported or that throws an error
     def sendToSelf(self, message, sock):
@@ -173,6 +184,8 @@ class BasicServer(object):
                                     channelName = channel_list[0]
                                     self.joinChannel(channelName, clientUserName, sock, 'None')
 
+                            elif msg[msg_start:msg_start + 8] == "/whisper":
+
                             # Notify client that whatever control they're trying to use doesn't exist
                             else:
                                 control = msg[msg_start:]
@@ -190,7 +203,6 @@ class BasicServer(object):
                                 if leaving in value:
                                     value.remove(leaving)
 
-    
 
 if len(args) != 2:
     print "Please supply a port."

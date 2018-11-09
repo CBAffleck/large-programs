@@ -64,5 +64,8 @@ SERVER_CHANNEL_CURRENT = "You are already in channel {0}."
 # Message sent to a client when the client first joins the server.
 SERVER_WELCOME = "Welcome to DevChat! \n"
 
+# Message sent to a client when the destination client does not exist on the server.
+SERVER_CLIENT_DOESNT_EXIST = "{0} is not a user that exists on the server."
+
 
 
