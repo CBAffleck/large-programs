@@ -92,7 +92,7 @@ class BasicServer(object):
 
     def sendWhisper(self, message, sock, username):
         exists = False
-        for socket, name in channels.iteritems():
+        for socket, name in clients.iteritems():
             if name == username:
                 exists = True
                 socket.send(message)
@@ -127,11 +127,13 @@ class BasicServer(object):
                             tmp = new_socket.recv(1024)
                             msg += tmp
                         msg = msg.rstrip()
+                        clientUserName = ""
                         if " " in msg:
                             msg_start = msg.index(" ") + 1
+                            clientUserName = msg[1:msg_start - 2]
                         else:
                             msg_start = msg.index("]")
-                        clientUserName = msg[1:msg_start - 2]
+                            clientUserName = msg[1:msg_start]
                         destination = sock.getpeername()
                         # Replace the port in the namelist with the client's username
                         if destination[1] in clients.values():
@@ -185,6 +187,17 @@ class BasicServer(object):
                                     self.joinChannel(channelName, clientUserName, sock, 'None')
 
                             elif msg[msg_start:msg_start + 8] == "/whisper":
+                                msg_list = msg.split()
+                                length = len(msg_list)
+                                if length < 4:
+                                    self.sendToSelf("\r" + utils.SERVER_WHISPER_REQUIRES_NAME, sock)
+                                else:
+                                    username = msg_list[2]
+                                    command = msg_list[1]
+                                    parsed_msg = ' '.join(msg_list[3:])
+                                    restructured_msg = "\r" + msg[:msg_start] + command[1:] + ": " + parsed_msg
+                                    self.sendWhisper(restructured_msg, sock, username)
+                                    sys.stdout.flush()
 
                             # Notify client that whatever control they're trying to use doesn't exist
                             else:

@@ -17,6 +17,8 @@ class BasicClient(object):
 		sys.stdout.flush()
 		sys.stdout.write("[Me] ")
 		sys.stdout.flush()
+		initialize_msg = "[" + self.name + "] "
+		self.socket.send(initialize_msg)
 		while True:
 			socket_list = [sys.stdin, self.socket]
 			ready_to_read, ready_to_write, in_error = select.select(socket_list , [], [])

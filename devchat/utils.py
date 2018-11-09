@@ -67,5 +67,8 @@ SERVER_WELCOME = "Welcome to DevChat! \n"
 # Message sent to a client when the destination client does not exist on the server.
 SERVER_CLIENT_DOESNT_EXIST = "{0} is not a user that exists on the server."
 
+# Message sent to a client that uses the "/whisper" command with too few arguments.
+SERVER_WHISPER_REQUIRES_NAME = "/whisper command must be followed by a client to whisper to and a message"
+
 
 
