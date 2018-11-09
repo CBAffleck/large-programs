@@ -100,6 +100,8 @@ class BasicServer(object):
             error_msg = utils.SERVER_CLIENT_DOESNT_EXIST.format(username)
             self.sendToSelf("\r" + error_msg, sock)
 
+    def changeUserName(self, newName, sock):
+        clients[sock] = newName
     
     ## Used by the server to send a message to a client trying to do something that isn't supported or that throws an error
     def sendToSelf(self, message, sock):
@@ -134,6 +136,8 @@ class BasicServer(object):
                         else:
                             msg_start = msg.index("]")
                             clientUserName = msg[1:msg_start]
+                        if clientUserName in clients.values():
+                            self.sendToSelf("\r" + utils.SERVER_USERNAME_TAKEN.format(clientUserName), sock)
                         destination = sock.getpeername()
                         # Replace the port in the namelist with the client's username
                         if destination[1] in clients.values():
@@ -198,6 +202,16 @@ class BasicServer(object):
                                     restructured_msg = "\r" + msg[:msg_start] + command[1:] + ": " + parsed_msg
                                     self.sendWhisper(restructured_msg, sock, username)
                                     sys.stdout.flush()
+
+                            elif msg[msg_start:msg_start + 11] == "/changeName":
+                                msg_list = msg[msg_start + 12:].split()
+                                length = len(msg_list)
+                                if length > 1:
+                                    self.sendToSelf("\r" + utils.SERVER_CHANGENAME_MANY_ARGUMENTS, sock)
+                                elif msg_list[0] == clientUserName:
+                                    self.sendToSelf("\r" + utils.SERVER_SAME_USERNAME, sock)
+                                else:
+                                    self.changeUserName(msg_list[0], sock)
 
                             # Notify client that whatever control they're trying to use doesn't exist
                             else:

@@ -70,5 +70,14 @@ SERVER_CLIENT_DOESNT_EXIST = "{0} is not a user that exists on the server."
 # Message sent to a client that uses the "/whisper" command with too few arguments.
 SERVER_WHISPER_REQUIRES_NAME = "/whisper command must be followed by a client to whisper to and a message"
 
+# Message sent to a client that uses the "/changeName" command with multiple new usernames.
+SERVER_CHANGENAME_MANY_ARGUMENTS = "/changeName command must be followed by exactly one new username."
+
+# Message sent to a client that uses the "/changeName" command with the same usernames.
+SERVER_SAME_USERNAME = "Please enter a new username."
+
+# Message sent to a client if their current username is already taken.
+SERVER_USERNAME_TAKEN = "{0} is already taken. Please change your username with the /changeName command."
+
 
 
