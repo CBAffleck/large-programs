@@ -29,11 +29,11 @@ class BasicClient(object):
 						error_msg = utils.CLIENT_SERVER_DISCONNECTED.format(client.address, client.port)
 						raise RuntimeError(error_msg)
 					else:
-						if msg_in[0] == "/" and "name has successfully been changed" in msg_in:
-							msg_in_list = msg_in.split()
-							new_name = msg_in_list[-1][:-1]
-							print new_name
-							self.name = new_name
+						# if msg_in[0] == "/" and "name has successfully been changed" in msg_in:
+						# 	msg_in_list = msg_in.split()
+						# 	new_name = msg_in_list[-1][:-1]
+						# 	print new_name
+						# 	self.name = new_name
 						print msg_in
 						sys.stdout.write("[Me] ")
 						sys.stdout.flush()
