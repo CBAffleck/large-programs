@@ -79,5 +79,8 @@ SERVER_SAME_USERNAME = "Please enter a new username."
 # Message sent to a client if their current username is already taken.
 SERVER_USERNAME_TAKEN = "{0} is already taken. Please change your username with the /changeName command."
 
+# Message sent to a client if their username change is successful.
+SERVER_USERNAME_CHANGED = "/Your name has successfully been changed to {0}."
+
 
 

@@ -100,8 +100,9 @@ class BasicServer(object):
             error_msg = utils.SERVER_CLIENT_DOESNT_EXIST.format(username)
             self.sendToSelf("\r" + error_msg, sock)
 
-    def changeUserName(self, newName, sock):
-        clients[sock] = newName
+    # def changeUserName(self, newName, sock):
+    #     clients[sock] = newName
+    #     self.sendToSelf("\r" + utils.SERVER_USERNAME_CHANGED.format(newName), sock)
     
     ## Used by the server to send a message to a client trying to do something that isn't supported or that throws an error
     def sendToSelf(self, message, sock):
@@ -136,8 +137,6 @@ class BasicServer(object):
                         else:
                             msg_start = msg.index("]")
                             clientUserName = msg[1:msg_start]
-                        if clientUserName in clients.values():
-                            self.sendToSelf("\r" + utils.SERVER_USERNAME_TAKEN.format(clientUserName), sock)
                         destination = sock.getpeername()
                         # Replace the port in the namelist with the client's username
                         if destination[1] in clients.values():
@@ -190,6 +189,7 @@ class BasicServer(object):
                                     channelName = channel_list[0]
                                     self.joinChannel(channelName, clientUserName, sock, 'None')
 
+                            # Send private message to another client
                             elif msg[msg_start:msg_start + 8] == "/whisper":
                                 msg_list = msg.split()
                                 length = len(msg_list)
@@ -203,15 +203,20 @@ class BasicServer(object):
                                     self.sendWhisper(restructured_msg, sock, username)
                                     sys.stdout.flush()
 
-                            elif msg[msg_start:msg_start + 11] == "/changeName":
-                                msg_list = msg[msg_start + 12:].split()
-                                length = len(msg_list)
-                                if length > 1:
-                                    self.sendToSelf("\r" + utils.SERVER_CHANGENAME_MANY_ARGUMENTS, sock)
-                                elif msg_list[0] == clientUserName:
-                                    self.sendToSelf("\r" + utils.SERVER_SAME_USERNAME, sock)
-                                else:
-                                    self.changeUserName(msg_list[0], sock)
+                            # Allows the client to change their username if their current one is already taken
+                            # elif msg[msg_start:msg_start + 11] == "/changeName":
+                            #     msg_list = msg[msg_start + 12:].split()
+                            #     length = len(msg_list)
+                            #     if length > 1 or length == 0:
+                            #         self.sendToSelf("\r" + utils.SERVER_CHANGENAME_MANY_ARGUMENTS, sock)
+                            #     else:
+                            #         newName = msg_list[0]
+                            #         if newName == clientUserName:
+                            #             self.sendToSelf("\r" + utils.SERVER_SAME_USERNAME, sock)
+                            #         elif newName in clients.values():
+                            #             self.sendToSelf("\r" + utils.SERVER_USERNAME_TAKEN.format(newName), sock)
+                            #         else:
+                            #             self.changeUserName(newName, sock)
 
                             # Notify client that whatever control they're trying to use doesn't exist
                             else:
@@ -235,6 +240,7 @@ if len(args) != 2:
     print "Please supply a port."
     sys.exit()
 server = BasicServer(args[1])
+changeRequested = [] # Format = [socket]
 protected_channels = {} # Format = {'channel' : password}
 channels = {} # Format = {'channel' : ['name']}
 clients = {} # Format = {socket : 'name'}
